@@ -1,7 +1,6 @@
 package com.example.aliceservice.skill.entityes.alice;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,4 +21,5 @@ public class YAUser {
     @ApiModelProperty(required = true, name = "access_token")
     @JsonProperty("access_token")
     String accessToken;
+
 }
