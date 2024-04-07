@@ -15,6 +15,7 @@ import lombok.experimental.FieldDefaults;
 public class YANaturalLanguageUnderstanding {
 
     List<String> tokens = new ArrayList<>();
+
     List<YAEntity> entities = new ArrayList<>();
 
 }

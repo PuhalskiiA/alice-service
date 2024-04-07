@@ -11,11 +11,6 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Data@FieldDefaults(level = AccessLevel.PRIVATE)
 public class YandexAliceResponse {
-
-    @ApiModelProperty(required = true)
     YASkillResponse response;
-
-    @ApiModelProperty(required = true)
     String version = "1.0";
-
 }

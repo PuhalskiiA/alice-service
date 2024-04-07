@@ -12,14 +12,11 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class YandexAliceRequest {
+    YAMetadata meta;
 
-    @ApiModelProperty(required = true)
     YASkillRequest request;
 
-    @ApiModelProperty(required = true)
     YASession session;
 
-    @ApiModelProperty(required = true)
     String version;
-
 }

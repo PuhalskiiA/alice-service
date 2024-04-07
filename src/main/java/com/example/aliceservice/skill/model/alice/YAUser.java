@@ -15,11 +15,9 @@ import lombok.experimental.FieldDefaults;
 public class YAUser {
 
     //Не используется??
-    @ApiModelProperty(required = true, name = "user_id")
     @JsonProperty("user_id")
     String userId;
 
-    @ApiModelProperty(required = true, name = "access_token")
     @JsonProperty("access_token")
     String accessToken;
 

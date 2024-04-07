@@ -8,10 +8,9 @@ import lombok.experimental.FieldDefaults;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data@FieldDefaults(level = AccessLevel.PRIVATE)
+@Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class YAToken {
-
     Integer start;
     Integer end;
-
 }

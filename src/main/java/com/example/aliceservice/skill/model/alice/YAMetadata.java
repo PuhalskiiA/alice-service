@@ -1,11 +1,9 @@
 package com.example.aliceservice.skill.model.alice;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.List;
@@ -14,24 +12,20 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@JsonDeserialize(builder = YAMetadata.YAMetadataBuilder.class)
+@Builder
 //Информация об устройстве, с помощью которого пользователь разговаривает с Алисой
 public class YAMetadata {
-
     //Язык в POSIX-формате
-    @ApiModelProperty(required = true)
     String locale;
 
     //Название часового пояса, включая алиасы
-    @ApiModelProperty(required = true)
     String timezone;
 
     //Идентификатор устройства и приложения, в котором идет разговор
     @JsonProperty("client_id")
-    @ApiModelProperty(name = "client_id")
     String clientId;
 
     //Интерфейсы, доступные на устройстве пользователя
-    @ApiModelProperty(required = true)
     YAMetaDataInterfaces interfaces;
-
 }

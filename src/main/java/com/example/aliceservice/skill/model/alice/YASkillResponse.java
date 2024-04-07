@@ -15,18 +15,9 @@ import java.util.List;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class YASkillResponse {
-
-    @ApiModelProperty(required = true)
     String text;
-
-    @ApiModelProperty
     String tts;
-
-    @ApiModelProperty
     List<YAButton> buttons;
-
-    @ApiModelProperty(required = true, name = "end_session")
     @JsonProperty("end_session")
     boolean endSession;
-
 }

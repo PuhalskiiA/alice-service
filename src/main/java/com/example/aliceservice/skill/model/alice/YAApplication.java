@@ -16,7 +16,6 @@ import lombok.experimental.FieldDefaults;
 public class YAApplication {
 
     //Идентификатор экземпляра приложения, в котором пользователь общается с Алисой
-    @ApiModelProperty(name = "application_id")
     @JsonProperty("application_id")
     String applicationId;
 

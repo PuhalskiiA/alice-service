@@ -15,7 +15,6 @@ import lombok.experimental.FieldDefaults;
 public class YARequestMarkup {
 
     @JsonProperty("dangerous_content")
-    @ApiModelProperty(name = "dangerous_content")
     boolean dangerousContent;
 
 }
