@@ -1,8 +1,6 @@
 package com.example.aliceservice.skill.controllers;
 
-import com.example.aliceservice.skill.exceptions.UserNotFoundException;
-import com.example.aliceservice.skill.model.entityes.User;
-import com.example.aliceservice.skill.services.servicesImpl.UserServiceImpl;
+import com.example.aliceservice.skill.services.servicesImpl.OAuthServiceImpl;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -12,21 +10,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.UUID;
-
 @RestController
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
-@RequestMapping(value = "/user")
-public class testUserController {
+public class OAuthController {
     @Autowired
-    private UserServiceImpl userService;
+    private OAuthServiceImpl oAuthService;
 
-    @GetMapping(value = "/get/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") UUID id) {
+    @GetMapping(value = "/oauth")
+    public ResponseEntity<String> authenticate(@RequestParam("code") String code) {
         try {
-            return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
-        } catch (UserNotFoundException e) {
+            return oAuthService.authenticate(code);
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "???");
         }
     }

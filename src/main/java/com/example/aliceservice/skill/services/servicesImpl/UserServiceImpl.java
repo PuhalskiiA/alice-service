@@ -17,10 +17,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(UUID id) {
-        Optional<User> user = Optional.ofNullable(userRepository.getUserById(id));
+        Optional<User> userOpt = Optional.ofNullable(userRepository.getUserById(id));
 
-        if (user.isPresent()) {
-            return user.get();
+        if (userOpt.isPresent()) {
+            return userOpt.get();
         } else {
             throw new UserNotFoundException("User not found");
         }

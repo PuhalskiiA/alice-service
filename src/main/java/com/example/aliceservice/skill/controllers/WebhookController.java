@@ -17,7 +17,6 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
-@Slf4j
 public class WebhookController {
     @Autowired
     private YandexAliceServiceImpl aliceService;

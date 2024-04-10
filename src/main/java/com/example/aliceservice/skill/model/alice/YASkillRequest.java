@@ -13,7 +13,6 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class YASkillRequest {
-
     String command;
 
     @JsonProperty("original_utterance")
@@ -24,5 +23,4 @@ public class YASkillRequest {
     YARequestMarkup markup;
 
     YANaturalLanguageUnderstanding nlu;
-
 }
