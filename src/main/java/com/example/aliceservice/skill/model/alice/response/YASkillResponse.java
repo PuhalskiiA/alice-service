@@ -1,7 +1,6 @@
-package com.example.aliceservice.skill.model.alice;
+package com.example.aliceservice.skill.model.alice.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,9 +14,19 @@ import java.util.List;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class YASkillResponse {
+    //Text to be shown and voiced to the user
     String text;
+
+    //Response in TTS (text-to-speech) format
     String tts;
+
+    //Buttons
     List<YAButton> buttons;
+
+    //Session state
+    YAResponseSessionState sessionState;
+
+    //End talk sign
     @JsonProperty("end_session")
     boolean endSession;
 }

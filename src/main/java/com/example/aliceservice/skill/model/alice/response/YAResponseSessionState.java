@@ -1,7 +1,5 @@
-package com.example.aliceservice.skill.model.alice;
+package com.example.aliceservice.skill.model.alice.response;
 
-import java.util.ArrayList;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,10 +10,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class YANaturalLanguageUnderstanding {
-
-    List<String> tokens = new ArrayList<>();
-
-    List<YAEntity> entities = new ArrayList<>();
-
+public class YAResponseSessionState {
+    //Value for state
+    String value;
 }

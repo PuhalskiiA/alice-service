@@ -1,6 +1,5 @@
-package com.example.aliceservice.skill.model.alice;
+package com.example.aliceservice.skill.model.alice.response;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +10,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Data@FieldDefaults(level = AccessLevel.PRIVATE)
 public class YandexAliceResponse {
+    //Data for answer to user
     YASkillResponse response;
+
+    //Protocol version
     String version = "1.0";
 }

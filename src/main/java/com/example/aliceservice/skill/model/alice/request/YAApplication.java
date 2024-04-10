@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.model.alice;
+package com.example.aliceservice.skill.model.alice.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
@@ -12,15 +12,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class YASkillRequest {
-    String command;
-
-    @JsonProperty("original_utterance")
-    String originalUtterance;
-
-    YARequestType type;
-
-    YARequestMarkup markup;
-
-    YANaturalLanguageUnderstanding nlu;
+public class YAApplication {
+    //The identifier of the application instance in which the user is communicating with Alice
+    @JsonProperty("application_id")
+    String applicationId;
 }

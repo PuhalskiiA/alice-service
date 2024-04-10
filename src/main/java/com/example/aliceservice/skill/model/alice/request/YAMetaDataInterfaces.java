@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.model.alice;
+package com.example.aliceservice.skill.model.alice.request;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
@@ -14,10 +14,12 @@ import java.util.List;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class YAMetaDataInterfaces {
-    //У пользователя есть возможность запросить связку аккаунтов
+    //Account linking of the user
     String accountLinking;
-    //Пользователь может видеть ответ навыка на экране и открывать ссылки в браузере
+
+    //User has a screen
     String screen;
-    //На устройстве пользователя есть аудиоплеер
+
+    //User has a audio
     String audio_player;
 }

@@ -1,7 +1,6 @@
-package com.example.aliceservice.skill.model.alice;
+package com.example.aliceservice.skill.model.alice.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,26 +13,24 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 //Данные о сессии
 public class YASession {
-
-    //Идентификатор сообщения в рамках сессии
+    //Message identifier in session
     @JsonProperty("message_id")
     Integer messageId;
 
-    //Уникальный идентификатор сессии
+    //Unique session identifier
     @JsonProperty("session_id")
     String sessionId;
 
-    //Идентификатор вызываемого навыка
+    //Skill identifier
     @JsonProperty("skill_id")
     String skillId;
 
-    //Данные о пользователе
+    //User data
     YAUser user;
 
-    //Данные о приложении
+    //Application data
     YAApplication application;
 
-    //Признак новой сессии
+    //New session sign
     boolean isNew;
-
 }

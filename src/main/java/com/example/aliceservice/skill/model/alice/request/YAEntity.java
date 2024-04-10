@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.model.alice;
+package com.example.aliceservice.skill.model.alice.request;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AccessLevel;
@@ -12,9 +12,12 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class YAEntity {
-
+    //Marking the beginning and end of a named entity in a word array
     YAToken token;
-    String type;
-    JsonNode value;
 
+    //Type of the named entity
+    String type;
+
+    //Formal description of a named entity
+    JsonNode value;
 }

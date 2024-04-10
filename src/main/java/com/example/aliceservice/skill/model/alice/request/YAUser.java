@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.model.alice;
+package com.example.aliceservice.skill.model.alice.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
@@ -12,9 +12,11 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class YARequestMarkup {
+public class YAUser {
+    @JsonProperty("user_id")
+    String userId;
 
-    @JsonProperty("dangerous_content")
-    boolean dangerousContent;
-
+    //Token for OAutn authentication
+    @JsonProperty("access_token")
+    String accessToken;
 }

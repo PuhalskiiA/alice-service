@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.model.alice;
+package com.example.aliceservice.skill.model.alice.request;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -11,6 +11,9 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class YAToken {
+    //First word of the named entity
     Integer start;
+
+    //First word after the named entity
     Integer end;
 }

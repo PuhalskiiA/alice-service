@@ -1,8 +1,12 @@
 package com.example.aliceservice.skill.services.servicesImpl;
 
+import com.example.aliceservice.skill.model.alice.request.YASession;
+import com.example.aliceservice.skill.model.alice.request.YASkillRequest;
+import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
+import com.example.aliceservice.skill.model.alice.response.YAButton;
+import com.example.aliceservice.skill.model.alice.response.YASkillResponse;
+import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
 import com.example.aliceservice.skill.services.YandexAliceService;
-import com.example.aliceservice.skill.model.alice.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,7 +23,7 @@ public class YandexAliceServiceImpl implements YandexAliceService {
 
         YASession yandexSession = yandexAliceRequest.getSession();
 
-//        YASkillRequest skillRequest = yandexAliceRequest.getRequest();
+        YASkillRequest skillRequest = yandexAliceRequest.getRequest();
 
         List<YAButton> listOfButtons = new ArrayList<>();
 
@@ -28,9 +32,12 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         listOfButtons.add(new YAButton("Расскажи о себе",
                 "https://yandex.ru/dev/dialogs/alice/doc/buttons.html", true));
 
-//        yandexAliceResponse.getResponse().setText("Здравствуй, Александр!");
-        yandexAliceResponse.getResponse().setButtons(listOfButtons);
-        yandexAliceResponse.getResponse().setEndSession(false);
+        if (yandexAliceRequest.getRequest() != null && yandexAliceRequest.getRequest().getMarkup() != null
+                && yandexAliceRequest.getRequest().getMarkup().isDangerousContent()) {
+            yandexAliceResponse.getResponse().setText("Не поняла вас. Попробуйте сказать это другими словами.");
+        } else if (yandexSession.){
+
+        }
 
         return yandexAliceResponse;
     }
@@ -40,6 +47,5 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         yandexAliceResponse.setResponse(new YASkillResponse());
         return yandexAliceResponse;
     }
-
 
 }
