@@ -23,9 +23,6 @@ public class YASkillResponse {
     //Buttons
     List<YAButton> buttons;
 
-    //Session state
-    YAResponseSessionState sessionState;
-
     //End talk sign
     @JsonProperty("end_session")
     boolean endSession;

@@ -20,6 +20,9 @@ public class YandexAliceRequest {
     //Session dara
     YASession session;
 
+    //Transmitted state when saving a session
+    YARequestSessionState sessionState;
+
     //Protocol version
     String version;
 }

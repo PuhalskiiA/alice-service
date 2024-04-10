@@ -13,6 +13,9 @@ public class YandexAliceResponse {
     //Data for answer to user
     YASkillResponse response;
 
+    //Value to be transferred to the next session
+    YAResponseSessionState sessionState;
+
     //Protocol version
     String version = "1.0";
 }

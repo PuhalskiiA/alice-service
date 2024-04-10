@@ -35,7 +35,7 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         if (yandexAliceRequest.getRequest() != null && yandexAliceRequest.getRequest().getMarkup() != null
                 && yandexAliceRequest.getRequest().getMarkup().isDangerousContent()) {
             yandexAliceResponse.getResponse().setText("Не поняла вас. Попробуйте сказать это другими словами.");
-        } else if (yandexSession.){
+        } else if (yandexSession.get){
 
         }
 
