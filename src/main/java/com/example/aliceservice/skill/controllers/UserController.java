@@ -2,7 +2,7 @@ package com.example.aliceservice.skill.controllers;
 
 import com.example.aliceservice.skill.exceptions.UserNotFoundException;
 import com.example.aliceservice.skill.model.entityes.User;
-import com.example.aliceservice.skill.services.servicesImpl.UserServiceImpl;
+import com.example.aliceservice.skill.services.userService.UserServiceImpl;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -18,7 +18,7 @@ import java.util.UUID;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @RequestMapping(value = "/user")
-public class testUserController {
+public class UserController {
     @Autowired
     private UserServiceImpl userService;
 

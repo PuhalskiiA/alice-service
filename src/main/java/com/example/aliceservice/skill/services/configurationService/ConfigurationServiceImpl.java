@@ -1,9 +1,8 @@
-package com.example.aliceservice.skill.services.servicesImpl;
+package com.example.aliceservice.skill.services.configurationService;
 
 import com.example.aliceservice.skill.exceptions.ConfigurationNotFoundException;
 import com.example.aliceservice.skill.model.entityes.Configuration;
 import com.example.aliceservice.skill.repositories.ConfigurationRepository;
-import com.example.aliceservice.skill.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

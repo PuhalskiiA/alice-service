@@ -1,5 +1,7 @@
 package com.example.aliceservice.skill.model.alice.response;
 
+import com.example.aliceservice.skill.model.alice.SessionState;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,8 +15,7 @@ public class YandexAliceResponse {
     //Data for answer to user
     YASkillResponse response;
 
-    //Value to be transferred to the next session
-    YAResponseSessionState sessionState;
+    SessionState sessionState;
 
     //Protocol version
     String version = "1.0";

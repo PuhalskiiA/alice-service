@@ -1,6 +1,6 @@
 package com.example.aliceservice.skill.controllers;
 
-import com.example.aliceservice.skill.services.servicesImpl.OAuthServiceImpl;
+import com.example.aliceservice.skill.services.OAuthService.OAuthServiceImpl;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;

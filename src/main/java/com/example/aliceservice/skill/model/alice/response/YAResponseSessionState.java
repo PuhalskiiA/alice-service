@@ -1,5 +1,6 @@
 package com.example.aliceservice.skill.model.alice.response;
 
+import com.example.aliceservice.skill.model.alice.SessionState;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,5 +13,5 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class YAResponseSessionState {
     //Value for state
-    String value;
+    SessionState value;
 }

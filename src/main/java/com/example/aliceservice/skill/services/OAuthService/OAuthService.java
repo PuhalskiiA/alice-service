@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.services;
+package com.example.aliceservice.skill.services.OAuthService;
 
 import org.springframework.http.ResponseEntity;
 

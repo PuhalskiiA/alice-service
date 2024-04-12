@@ -1,9 +1,8 @@
-package com.example.aliceservice.skill.services.servicesImpl;
+package com.example.aliceservice.skill.services.userService;
 
 import com.example.aliceservice.skill.exceptions.UserNotFoundException;
 import com.example.aliceservice.skill.model.entityes.User;
 import com.example.aliceservice.skill.repositories.UserRepository;
-import com.example.aliceservice.skill.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

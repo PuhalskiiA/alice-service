@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.services;
+package com.example.aliceservice.skill.services.userService;
 
 import com.example.aliceservice.skill.model.entityes.User;
 

@@ -2,7 +2,7 @@ package com.example.aliceservice.skill.controllers;
 
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
-import com.example.aliceservice.skill.services.servicesImpl.YandexAliceServiceImpl;
+import com.example.aliceservice.skill.services.yandexService.YandexAliceServiceImpl;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -28,5 +28,4 @@ public class WebhookController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "???");
         }
     }
-
 }

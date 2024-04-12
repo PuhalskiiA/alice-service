@@ -1,12 +1,14 @@
-package com.example.aliceservice.skill.services.servicesImpl;
+package com.example.aliceservice.skill.services.yandexService;
 
+import com.example.aliceservice.skill.model.alice.SessionState;
 import com.example.aliceservice.skill.model.alice.request.YASession;
 import com.example.aliceservice.skill.model.alice.request.YASkillRequest;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAButton;
 import com.example.aliceservice.skill.model.alice.response.YASkillResponse;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
-import com.example.aliceservice.skill.services.YandexAliceService;
+import com.example.aliceservice.skill.services.OAuthService.OAuthServiceImpl;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -32,13 +34,19 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         listOfButtons.add(new YAButton("Расскажи о себе",
                 "https://yandex.ru/dev/dialogs/alice/doc/buttons.html", true));
 
-        if (yandexAliceRequest.getRequest() != null && yandexAliceRequest.getRequest().getMarkup() != null
-                && yandexAliceRequest.getRequest().getMarkup().isDangerousContent()) {
-            yandexAliceResponse.getResponse().setText("Не поняла вас. Попробуйте сказать это другими словами.");
-        } else if (yandexSession.get){
+//        yandexAliceRequest.setSessionState(new YARequestSessionState(SessionState.INITIAL));
 
-        }
+//        if (yandexAliceRequest.getRequest() != null && yandexAliceRequest.getRequest().getMarkup() != null
+//                && yandexAliceRequest.getRequest().getMarkup().isDangerousContent()) {
+//            yandexAliceResponse.getResponse().setText("Не поняла тебя. Давай попробуем сказать по другому.");
+//        } else if (yandexAliceRequest.getRequest() != null &&
+//                checkSessionState(yandexAliceRequest) == null){
+//            yandexAliceResponse.getResponse().setText("Привет?");
+//            yandexAliceResponse.setSessionState(SessionState.INITIAL);
+//        }
 
+        yandexAliceResponse.getResponse().setButtons(listOfButtons);
+        System.out.println(yandexAliceResponse);
         return yandexAliceResponse;
     }
 
@@ -46,6 +54,14 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         YandexAliceResponse yandexAliceResponse = new YandexAliceResponse();
         yandexAliceResponse.setResponse(new YASkillResponse());
         return yandexAliceResponse;
+    }
+
+    private boolean commandDefined(YASkillRequest skillRequest) {
+        return skillRequest != null && Strings.isNotBlank(skillRequest.getCommand());
+    }
+
+    private SessionState checkSessionState(YandexAliceRequest yandexAliceRequest) {
+        return yandexAliceRequest.getSessionState().getSessionState();
     }
 
 }

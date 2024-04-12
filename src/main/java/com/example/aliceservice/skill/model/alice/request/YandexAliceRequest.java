@@ -1,5 +1,6 @@
 package com.example.aliceservice.skill.model.alice.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class YandexAliceRequest {
     //Session dara
     YASession session;
 
+    @JsonProperty("state")
     //Transmitted state when saving a session
     YARequestSessionState sessionState;
 
