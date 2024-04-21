@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.services.OAuthService.models;
+package com.example.aliceservice.skill.services.OAuthService.impl;
 
 import com.example.aliceservice.skill.services.OAuthService.OAuthService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,6 @@
-package com.example.aliceservice.skill.services.OAuthService.models;
+package com.example.aliceservice.skill.services.OAuthService.impl;
 
 import com.example.aliceservice.skill.calendars.calendly.OAuth.model.OAuthResponseBody;
-import com.example.aliceservice.skill.model.entityes.Token;
 import com.example.aliceservice.skill.services.OAuthService.OAuthService;
 import com.example.aliceservice.skill.services.tokenService.TokenServiceImpl;
 import com.example.aliceservice.skill.util.Sources;
@@ -17,7 +16,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Base64;
-import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -51,12 +49,14 @@ public class CalendlyOAuthServiceImpl implements OAuthService {
         ResponseEntity<OAuthResponseBody> response = restTemplate
                 .postForEntity("https://auth.calendly.com/oauth/token", requestEntity, OAuthResponseBody.class);
 
-        System.out.println(response);
+        tokenService.addToken(UUID.randomUUID(),
+                response.getBody().getAccessToken(),
+                response.getBody().getRefreshToken(),
+                UUIDParser.parse(response.getBody().getOwner()),
+                UUIDParser.parse(response.getBody().getOrganization()),
+                Sources.CALENDLY.toString());
 
-        tokenService.addToken(UUID.randomUUID(), response.getBody().getAccessToken(), response.getBody().getRefreshToken(),
-                UUIDParser.parse(response.getBody().getOwner()), UUIDParser.parse(response.getBody().getOrganization()), Sources.CALENDLY.toString());
-
-        return restTemplate.postForEntity("https://auth.calendly.com/oauth/token", requestEntity, String.class);
+        return new ResponseEntity<>(response.toString(), response.getStatusCode());
     }
 
     @Override

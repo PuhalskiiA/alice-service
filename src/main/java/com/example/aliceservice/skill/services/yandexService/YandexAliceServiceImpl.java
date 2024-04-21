@@ -7,9 +7,11 @@ import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAButton;
 import com.example.aliceservice.skill.model.alice.response.YASkillResponse;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
-import com.example.aliceservice.skill.services.OAuthService.models.CalendlyOAuthServiceImpl;
-import com.example.aliceservice.skill.services.OAuthService.models.OAuthServiceImpl;
+import com.example.aliceservice.skill.services.OAuthService.impl.CalendlyOAuthServiceImpl;
+import com.example.aliceservice.skill.services.OAuthService.impl.OAuthServiceImpl;
+import com.example.aliceservice.skill.services.talk.TalkServiceImpl;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,38 +19,52 @@ import java.util.List;
 
 @Service
 public class YandexAliceServiceImpl implements YandexAliceService {
+    @Autowired
+    private TalkServiceImpl talkService;
+
     @Override
     public YandexAliceResponse talkYandexAlice(YandexAliceRequest yandexAliceRequest) {
         YandexAliceResponse yandexAliceResponse = yandexResponse();
 
-
-
-        yandexAliceResponse.getResponse().setText("Привет! Я твой помощник в планировании дня. " +
-                "Скажи \"расскажи о себе\", чтобы немного узнать обо мне.\"");
-
         YASession yandexSession = yandexAliceRequest.getSession();
-
         YASkillRequest skillRequest = yandexAliceRequest.getRequest();
-
         List<YAButton> listOfButtons = new ArrayList<>();
+        SessionState aliceUserState = yandexAliceRequest.getSessionState().getUserState().getState();
+
+        if (aliceUserState == null && skillRequest.getCommand().isEmpty()) {
+
+            yandexAliceResponse.getResponse().setText("Привет! Я твой персональный помощник в планировании дня, " +
+                    "скажи \"расскажи о себе\", чтобы немного узнать обо мне.");
+
+        } else if (skillRequest != null && skillRequest.getMarkup() != null &&
+                skillRequest.getMarkup().isDangerousContent()) {
+
+            yandexAliceResponse.getResponse().setText("Не поняла, попробуй сказать другими словами.");
+
+        } else if (skillRequest != null && skillRequest.getCommand().equals("расскажи о себе")) {
+
+            yandexAliceResponse.getResponse().setText(talkService.saidSelfInformation());
+
+        } else if (skillRequest.getCommand().equals("давай авторизируемся")) {
+
+            //Check auth of user in database -> (true) "U're already authorized" : (false) "Let's authorize"
+            yandexAliceResponse.getResponse().setText("Для авторизации нужен ЯндексID и чат со мной. " +
+                    "Если ты уже в нем, просто нажми клавишу \"Давай авторизируемся\"");
+
+        } else if (skillRequest.getCommand().equals("спасибо")) {
+
+            yandexAliceResponse.getResponse().setText("Стараемся, Клим Саныч, стараемся");
+
+        } else {
+
+            yandexAliceResponse.getResponse().setText("Не поняла");
+
+        }
 
         listOfButtons.add(new YAButton("Давай авторизируемся",
                 new OAuthServiceImpl().getCodeURL(), true));
-        listOfButtons.add(new YAButton("Расскажи о себе",
-                "https://yandex.ru/dev/dialogs/alice/doc/buttons.html", true));
         listOfButtons.add(new YAButton("Подключить Calendly",
                 new CalendlyOAuthServiceImpl().getCodeURL(), true));
-
-//        yandexAliceRequest.setSessionState(new YARequestSessionState(SessionState.INITIAL));
-
-//        if (yandexAliceRequest.getRequest() != null && yandexAliceRequest.getRequest().getMarkup() != null
-//                && yandexAliceRequest.getRequest().getMarkup().isDangerousContent()) {
-//            yandexAliceResponse.getResponse().setText("Не поняла тебя. Давай попробуем сказать по другому.");
-//        } else if (yandexAliceRequest.getRequest() != null &&
-//                checkSessionState(yandexAliceRequest) == null){
-//            yandexAliceResponse.getResponse().setText("Привет?");
-//            yandexAliceResponse.setSessionState(SessionState.INITIAL);
-//        }
 
         yandexAliceResponse.getResponse().setButtons(listOfButtons);
         System.out.println(yandexAliceResponse);
@@ -65,8 +81,8 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         return skillRequest != null && Strings.isNotBlank(skillRequest.getCommand());
     }
 
-    private SessionState checkSessionState(YandexAliceRequest yandexAliceRequest) {
-        return yandexAliceRequest.getSessionState().getSessionState();
-    }
+//    private SessionState checkSessionState(YandexAliceRequest yandexAliceRequest) {
+//        return yandexAliceRequest.getSessionState();
+//    }
 
 }

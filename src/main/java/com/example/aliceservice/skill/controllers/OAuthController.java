@@ -1,8 +1,7 @@
 package com.example.aliceservice.skill.controllers;
 
-import com.example.aliceservice.skill.services.OAuthService.OAuthService;
-import com.example.aliceservice.skill.services.OAuthService.models.CalendlyOAuthServiceImpl;
-import com.example.aliceservice.skill.services.OAuthService.models.OAuthServiceImpl;
+import com.example.aliceservice.skill.services.OAuthService.impl.CalendlyOAuthServiceImpl;
+import com.example.aliceservice.skill.services.OAuthService.impl.OAuthServiceImpl;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;

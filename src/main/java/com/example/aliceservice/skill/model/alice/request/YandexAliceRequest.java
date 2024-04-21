@@ -23,7 +23,7 @@ public class YandexAliceRequest {
 
     @JsonProperty("state")
     //Transmitted state when saving a session
-    YARequestSessionState sessionState;
+    YAState sessionState;
 
     //Protocol version
     String version;
