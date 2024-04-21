@@ -22,10 +22,19 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
-    @GetMapping(value = "/get/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") UUID id) {
+    @GetMapping(value = "/get/{uuid}")
+    public ResponseEntity<User> getUser(@PathVariable("uuid") UUID uuid) {
         try {
-            return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
+            return new ResponseEntity<>(userService.getUserById(uuid), HttpStatus.OK);
+        } catch (UserNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "???");
+        }
+    }
+
+    @PostMapping(value = "/get_tokens/{uuid}")
+    public void getTokensForService(@PathVariable("uuid") UUID uuid) {
+        try {
+            userService.getUserById(uuid);
         } catch (UserNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "???");
         }

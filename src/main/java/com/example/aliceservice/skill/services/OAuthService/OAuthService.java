@@ -5,5 +5,5 @@ import org.springframework.http.ResponseEntity;
 public interface OAuthService {
     ResponseEntity<String> authenticate(String code);
 
-    String getUrl();
+    String getCodeURL();
 }

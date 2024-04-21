@@ -7,7 +7,8 @@ import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAButton;
 import com.example.aliceservice.skill.model.alice.response.YASkillResponse;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
-import com.example.aliceservice.skill.services.OAuthService.OAuthServiceImpl;
+import com.example.aliceservice.skill.services.OAuthService.models.CalendlyOAuthServiceImpl;
+import com.example.aliceservice.skill.services.OAuthService.models.OAuthServiceImpl;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ public class YandexAliceServiceImpl implements YandexAliceService {
     public YandexAliceResponse talkYandexAlice(YandexAliceRequest yandexAliceRequest) {
         YandexAliceResponse yandexAliceResponse = yandexResponse();
 
+
+
         yandexAliceResponse.getResponse().setText("Привет! Я твой помощник в планировании дня. " +
                 "Скажи \"расскажи о себе\", чтобы немного узнать обо мне.\"");
 
@@ -30,9 +33,11 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         List<YAButton> listOfButtons = new ArrayList<>();
 
         listOfButtons.add(new YAButton("Давай авторизируемся",
-                new OAuthServiceImpl().getUrl(), true));
+                new OAuthServiceImpl().getCodeURL(), true));
         listOfButtons.add(new YAButton("Расскажи о себе",
                 "https://yandex.ru/dev/dialogs/alice/doc/buttons.html", true));
+        listOfButtons.add(new YAButton("Подключить Calendly",
+                new CalendlyOAuthServiceImpl().getCodeURL(), true));
 
 //        yandexAliceRequest.setSessionState(new YARequestSessionState(SessionState.INITIAL));
 

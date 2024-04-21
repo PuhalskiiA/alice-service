@@ -24,4 +24,9 @@ public class UserServiceImpl implements UserService {
             throw new UserNotFoundException("User not found");
         }
     }
+
+    @Override
+    public void getTokensForService(UUID uuid) {
+
+    }
 }

@@ -18,7 +18,7 @@ public class YandexAliceRequest {
     //Data from user
     YASkillRequest request;
 
-    //Session dara
+    //Session data
     YASession session;
 
     @JsonProperty("state")

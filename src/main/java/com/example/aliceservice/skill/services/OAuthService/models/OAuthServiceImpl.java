@@ -1,5 +1,6 @@
-package com.example.aliceservice.skill.services.OAuthService;
+package com.example.aliceservice.skill.services.OAuthService.models;
 
+import com.example.aliceservice.skill.services.OAuthService.OAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -40,7 +41,7 @@ public class OAuthServiceImpl implements OAuthService {
     }
 
     @Override
-    public String getUrl() {
+    public String getCodeURL() {
         String url = "https://oauth.yandex.ru/authorize";
         String responseType = "code";
 
