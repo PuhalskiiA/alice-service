@@ -28,12 +28,9 @@ public class User {
     @Column(name = "sex")
     private String sex;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", sex='" + sex + '\'' +
-                '}';
-    }
+    @Column(name = "psuid")
+    private String psuid;
+
+    @Column(name = "application_id")
+    private String applicationID;
 }

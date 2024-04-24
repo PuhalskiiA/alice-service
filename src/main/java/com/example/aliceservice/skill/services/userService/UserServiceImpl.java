@@ -29,4 +29,9 @@ public class UserServiceImpl implements UserService {
     public void getTokensForService(UUID uuid) {
 
     }
+
+    @Override
+    public void addUser(UUID id, String name, String surname, String email, String sex, String psuid, String applicationID) {
+        userRepository.addUser(id, name, surname, email, sex, psuid, applicationID);
+    }
 }

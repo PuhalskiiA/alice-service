@@ -1,6 +1,6 @@
 package com.example.aliceservice.skill.services.OAuthService.impl;
 
-import com.example.aliceservice.skill.calendars.calendly.OAuth.model.OAuthResponseBody;
+import com.example.aliceservice.skill.model.OAuthModels.calendly.OAuthResponseBody;
 import com.example.aliceservice.skill.services.OAuthService.OAuthService;
 import com.example.aliceservice.skill.services.tokenService.TokenServiceImpl;
 import com.example.aliceservice.skill.util.Sources;
@@ -66,8 +66,6 @@ public class CalendlyOAuthServiceImpl implements OAuthService {
 
         String requestUrl = url + "?client_id=" + clientId + "&response_type=" + responseType +
                 "&redirect_uri=" + redirectURI;
-
-        System.out.println("\n\n\n" + requestUrl + "\n\n\n");
 
         return requestUrl;
     }

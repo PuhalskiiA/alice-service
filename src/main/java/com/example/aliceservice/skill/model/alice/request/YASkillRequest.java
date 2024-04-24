@@ -25,6 +25,9 @@ public class YASkillRequest {
     //Dangerous content
     YARequestMarkup markup;
 
+    @JsonProperty("payload")
+    YASkillRequest payload;
+
     //Words and namend entities
     YANaturalLanguageUnderstanding nlu;
 }

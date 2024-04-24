@@ -1,7 +1,7 @@
 package com.example.aliceservice.skill.controllers;
 
 import com.example.aliceservice.skill.services.OAuthService.impl.CalendlyOAuthServiceImpl;
-import com.example.aliceservice.skill.services.OAuthService.impl.OAuthServiceImpl;
+import com.example.aliceservice.skill.services.OAuthService.impl.YandexOAuthServiceImpl;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,17 +17,18 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping(value = "/oauth")
 public class OAuthController {
     @Autowired
-    private OAuthServiceImpl oAuthService;
+    private YandexOAuthServiceImpl yandexOAuthService;
 
     @Autowired
     private CalendlyOAuthServiceImpl calendlyOAuthService;
 
-    @GetMapping(value = "/yandexID")
-    public ResponseEntity<String> authenticateYAID(@RequestParam("code") String code) {
+    @GetMapping(value = "/yandex_id")
+    public ResponseEntity<String> authenticateYAID(@RequestParam("code") String code,
+                                                   @RequestParam("state") String state) {
         try {
-            return oAuthService.authenticate(code);
+            return yandexOAuthService.authenticate(code, state);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw e;
         }
     }
 

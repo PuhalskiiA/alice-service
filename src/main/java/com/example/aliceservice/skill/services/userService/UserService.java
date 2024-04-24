@@ -8,4 +8,6 @@ public interface UserService {
     User getUserById(UUID id);
 
     void getTokensForService(UUID uuid);
+
+    void addUser(UUID id, String name, String surname, String email, String sex, String psuid, String applicationID);
 }

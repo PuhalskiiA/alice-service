@@ -1,14 +1,13 @@
 package com.example.aliceservice.skill.services.yandexService;
 
 import com.example.aliceservice.skill.model.alice.SessionState;
+import com.example.aliceservice.skill.model.alice.request.YARequestType;
 import com.example.aliceservice.skill.model.alice.request.YASession;
 import com.example.aliceservice.skill.model.alice.request.YASkillRequest;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
-import com.example.aliceservice.skill.model.alice.response.YAButton;
-import com.example.aliceservice.skill.model.alice.response.YASkillResponse;
-import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
+import com.example.aliceservice.skill.model.alice.response.*;
 import com.example.aliceservice.skill.services.OAuthService.impl.CalendlyOAuthServiceImpl;
-import com.example.aliceservice.skill.services.OAuthService.impl.OAuthServiceImpl;
+import com.example.aliceservice.skill.services.OAuthService.impl.YandexOAuthServiceImpl;
 import com.example.aliceservice.skill.services.talk.TalkServiceImpl;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +29,8 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         YASkillRequest skillRequest = yandexAliceRequest.getRequest();
         List<YAButton> listOfButtons = new ArrayList<>();
         SessionState aliceUserState = yandexAliceRequest.getSessionState().getUserState().getState();
+        String applicationID = yandexAliceRequest.getSession().getApplication().getApplicationId();
+        String userID = yandexAliceRequest.getSession().getUser().getUserId();
 
         if (aliceUserState == null && skillRequest.getCommand().isEmpty()) {
 
@@ -62,7 +63,7 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         }
 
         listOfButtons.add(new YAButton("Давай авторизируемся",
-                new OAuthServiceImpl().getCodeURL(), true));
+                new YandexOAuthServiceImpl().getCodeURL(applicationID, userID), true));
         listOfButtons.add(new YAButton("Подключить Calendly",
                 new CalendlyOAuthServiceImpl().getCodeURL(), true));
 

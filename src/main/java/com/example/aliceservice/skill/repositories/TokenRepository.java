@@ -1,7 +1,9 @@
 package com.example.aliceservice.skill.repositories;
 
 import com.example.aliceservice.skill.model.entityes.Token;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +19,9 @@ public interface TokenRepository extends JpaRepository<Token, UUID> {
 
     void deleteTokenByUserID(UUID userID);
 
-    @Query(value = "insert into tokens values (?, ?, ?, ?, ?)", nativeQuery = true)
+    @Modifying
+    @Transactional
+    @Query(value = "insert into tokens (id, token, refresh_token, user_id, organization_id, source) values (?, ?, ?, ?, ?, ?)",
+            nativeQuery = true)
     void addToken(UUID id, String token, String refreshToken, UUID userID, UUID organizationID, String source);
 }

@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.calendars.calendly.OAuth.model;
+package com.example.aliceservice.skill.model.OAuthModels.calendly;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

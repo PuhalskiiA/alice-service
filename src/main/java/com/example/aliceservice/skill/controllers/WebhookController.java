@@ -25,7 +25,7 @@ public class WebhookController {
         try {
             return aliceService.talkYandexAlice(request);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "???");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.toString());
         }
     }
 }

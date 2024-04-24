@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.calendars.calendly.OAuth.model;
+package com.example.aliceservice.skill.model.OAuthModels.calendly;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
