@@ -1,15 +1,13 @@
 package com.example.aliceservice.skill.services.OAuthService.impl;
 
+import com.example.aliceservice.skill.exceptions.TokenNotFoundException;
 import com.example.aliceservice.skill.model.OAuthModels.calendly.OAuthResponseBody;
 import com.example.aliceservice.skill.services.OAuthService.OAuthService;
 import com.example.aliceservice.skill.services.tokenService.TokenServiceImpl;
+import com.example.aliceservice.skill.services.userService.UserServiceImpl;
 import com.example.aliceservice.skill.util.Sources;
-import com.example.aliceservice.skill.util.UUIDParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -26,12 +24,15 @@ public class CalendlyOAuthServiceImpl implements OAuthService {
     @Autowired
     private TokenServiceImpl tokenService;
 
+    @Autowired
+    private UserServiceImpl userService;
+
     private final String clientId = "kTYiuXubdTDCaC7QkJsGJjFcLS7NGQ4yInlnoI6TAdI";
     private final String clientSecret = "Qu8Q4AjG0kr4tbhucsXF8BwdhvhGUBYHgKuNlQ7TXio";
     private final String redirectURI = "https://dateplan.ru/oauth/calendly";
 
     @Override
-    public ResponseEntity<String> authenticate(String code) {
+    public ResponseEntity<String> authenticate(String code, String state) {
         MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
 
         requestBody.add("grant_type", "authorization_code");
@@ -49,23 +50,34 @@ public class CalendlyOAuthServiceImpl implements OAuthService {
         ResponseEntity<OAuthResponseBody> response = restTemplate
                 .postForEntity("https://auth.calendly.com/oauth/token", requestEntity, OAuthResponseBody.class);
 
-        tokenService.addToken(UUID.randomUUID(),
-                response.getBody().getAccessToken(),
-                response.getBody().getRefreshToken(),
-                UUIDParser.parse(response.getBody().getOwner()),
-                UUIDParser.parse(response.getBody().getOrganization()),
-                Sources.CALENDLY.toString());
+        UUID localUserID = userService.getIdByPsuid(state);
 
-        return new ResponseEntity<>(response.toString(), response.getStatusCode());
+        try {
+            tokenService.getTokenByUserIDAndSource(localUserID, Sources.CALENDLY.toString());
+            return new ResponseEntity<>(HttpStatus.ALREADY_REPORTED);
+        } catch (TokenNotFoundException e) {
+            tokenService.addToken(UUID.randomUUID(),
+                    response.getBody().getAccessToken(),
+                    response.getBody().getRefreshToken(),
+                    localUserID,
+                    response.getBody().getOwner(),
+                    response.getBody().getOrganization(),
+                    Sources.CALENDLY.toString());
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
 
     @Override
-    public String getCodeURL() {
+    public String getCodeURL(String state) {
         String url = "https://auth.calendly.com/oauth/authorize";
         String responseType = "code";
 
-        String requestUrl = url + "?client_id=" + clientId + "&response_type=" + responseType +
-                "&redirect_uri=" + redirectURI;
+        String requestUrl = url +
+                "?client_id=" + clientId +
+                "&response_type=" + responseType +
+                "&redirect_uri=" + redirectURI +
+                "&state=" + state;
 
         return requestUrl;
     }

@@ -33,9 +33,10 @@ public class OAuthController {
     }
 
     @GetMapping(value = "/calendly")
-    public ResponseEntity<String> authenticateCalendly(@RequestParam("code") String code) {
+    public ResponseEntity<String> authenticateCalendly(@RequestParam("code") String code,
+                                                       @RequestParam("state") String state) {
         try {
-            return calendlyOAuthService.authenticate(code);
+            return calendlyOAuthService.authenticate(code, state);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

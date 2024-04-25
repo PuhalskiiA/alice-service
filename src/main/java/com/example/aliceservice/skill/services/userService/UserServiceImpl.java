@@ -6,6 +6,8 @@ import com.example.aliceservice.skill.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,12 +28,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void getTokensForService(UUID uuid) {
-
+    public void addUser(UUID id, String name, String surname, String email, String sex, String psuid, String applicationID) {
+        userRepository.addUser(id, name, surname, email, sex, psuid, applicationID);
     }
 
     @Override
-    public void addUser(UUID id, String name, String surname, String email, String sex, String psuid, String applicationID) {
-        userRepository.addUser(id, name, surname, email, sex, psuid, applicationID);
+    public UUID getIdByPsuid(String psuid) {
+        return userRepository.getIdByPsuid(psuid);
+    }
+
+    @Override
+    public User getUserByPsuid(String psuid) {
+        Optional<User> userOpt = Optional.ofNullable(userRepository.getUserByPsuid(psuid));
+
+        if (userOpt.isPresent()) {
+            return userOpt.get();
+        } else {
+            throw new UserNotFoundException("User not found");
+        }
     }
 }

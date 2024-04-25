@@ -11,5 +11,7 @@ public interface TokenService {
 
     void deleteTokenByUserID(UUID userID);
 
-    void addToken(UUID id, String token, String refreshToken, UUID userID, UUID organizationID, String source);
+    void addToken(UUID id, String token, String refreshToken, UUID userID, String owner, String organization, String source);
+
+    Token getTokenByUserIDAndSource(UUID userID, String source);
 }

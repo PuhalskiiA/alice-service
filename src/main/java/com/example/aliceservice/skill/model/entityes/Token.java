@@ -27,8 +27,11 @@ public class Token {
     @Column(name = "user_id")
     UUID userID;
 
-    @Column(name = "organization_id")
-    UUID organizationID;
+    @Column(name = "owner")
+    String owner;
+
+    @Column(name = "organization")
+    String organization;
 
     @Column(name = "source")
     String source;

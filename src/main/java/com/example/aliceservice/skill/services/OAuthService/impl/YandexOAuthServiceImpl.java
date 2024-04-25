@@ -1,7 +1,9 @@
 package com.example.aliceservice.skill.services.OAuthService.impl;
 
+import com.example.aliceservice.skill.exceptions.UserNotFoundException;
 import com.example.aliceservice.skill.model.OAuthModels.yandex.OAuthResponseTokenBody;
 import com.example.aliceservice.skill.model.OAuthModels.yandex.OAuthResponseUserBody;
+import com.example.aliceservice.skill.model.entityes.User;
 import com.example.aliceservice.skill.services.OAuthService.YandexOAuthService;
 import com.example.aliceservice.skill.services.tokenService.TokenServiceImpl;
 import com.example.aliceservice.skill.services.userService.UserServiceImpl;
@@ -65,24 +67,32 @@ public class YandexOAuthServiceImpl implements YandexOAuthService {
 
         Map<String, String> ids = parseState(state);
         String applicationID = ids.get("applicationID");
-        String userID = ids.get("userID");
+        String psuid = ids.get("userID");
         UUID localUserID = UUID.randomUUID();
 
-        userService.addUser(localUserID,
-                userDataResponseBody.getFirstName(),
-                userDataResponseBody.getLastName(),
-                userDataResponseBody.getDefaultEmail(),
-                userDataResponseBody.getSex(),
-                userID,
-                applicationID);
-        tokenService.addToken(UUID.randomUUID(),
-                tokenResponseBody.getAccessToken(),
-                tokenResponseBody.getRefreshToken(),
-                localUserID,
-                null,
-                Sources.YANDEX.toString());
+        try {
+            User user = userService.getUserByPsuid(psuid);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.ALREADY_REPORTED);
+
+        } catch (UserNotFoundException e) {
+            userService.addUser(localUserID,
+                    userDataResponseBody.getFirstName(),
+                    userDataResponseBody.getLastName(),
+                    userDataResponseBody.getDefaultEmail(),
+                    userDataResponseBody.getSex(),
+                    psuid,
+                    applicationID);
+            tokenService.addToken(UUID.randomUUID(),
+                    tokenResponseBody.getAccessToken(),
+                    tokenResponseBody.getRefreshToken(),
+                    localUserID,
+                    null,
+                    null,
+                    Sources.YANDEX.toString());
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
 
     @Override

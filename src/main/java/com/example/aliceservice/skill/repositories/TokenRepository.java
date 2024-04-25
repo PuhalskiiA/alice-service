@@ -21,7 +21,9 @@ public interface TokenRepository extends JpaRepository<Token, UUID> {
 
     @Modifying
     @Transactional
-    @Query(value = "insert into tokens (id, token, refresh_token, user_id, organization_id, source) values (?, ?, ?, ?, ?, ?)",
+    @Query(value = "insert into tokens (id, token, refresh_token, user_id, owner, organization, source) values (?, ?, ?, ?, ?, ?, ?)",
             nativeQuery = true)
-    void addToken(UUID id, String token, String refreshToken, UUID userID, UUID organizationID, String source);
+    void addToken(UUID id, String token, String refreshToken, UUID userID, String owner, String organization, String source);
+
+    Token getTokenByUserIDAndSource(UUID userID, String source);
 }

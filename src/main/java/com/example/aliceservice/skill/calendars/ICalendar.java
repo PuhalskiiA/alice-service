@@ -5,8 +5,6 @@ import com.example.aliceservice.skill.calendars.model.Event;
 import java.util.List;
 
 public interface ICalendar {
-    void authenticate();
-
     void addEvent();
 
     void updateEvent();

@@ -65,7 +65,7 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         listOfButtons.add(new YAButton("Давай авторизируемся",
                 new YandexOAuthServiceImpl().getCodeURL(applicationID, userID), true));
         listOfButtons.add(new YAButton("Подключить Calendly",
-                new CalendlyOAuthServiceImpl().getCodeURL(), true));
+                new CalendlyOAuthServiceImpl().getCodeURL(userID), true));
 
         yandexAliceResponse.getResponse().setButtons(listOfButtons);
         System.out.println(yandexAliceResponse);
