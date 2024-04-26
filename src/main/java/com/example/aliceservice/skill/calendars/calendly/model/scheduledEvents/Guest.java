@@ -18,8 +18,8 @@ public class Guest {
     String email;
 
     @JsonProperty("created_at")
-    Date createdAt;
+    String createdAt;
 
     @JsonProperty("updated_at")
-    Date updatedAt;
+    String updatedAt;
 }

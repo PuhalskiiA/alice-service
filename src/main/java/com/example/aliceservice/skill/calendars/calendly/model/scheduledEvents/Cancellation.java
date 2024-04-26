@@ -24,5 +24,5 @@ public class Cancellation {
     String cancelerType;
 
     @JsonProperty("created_at")
-    Date createdAt;
+    String createdAt;
 }

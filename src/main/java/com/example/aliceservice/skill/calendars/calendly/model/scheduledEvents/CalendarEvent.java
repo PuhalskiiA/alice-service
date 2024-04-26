@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.calendars.calendly.model.scheduledEvents.location;
+package com.example.aliceservice.skill.calendars.calendly.model.scheduledEvents;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -11,13 +11,10 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GoogleConferenceLocation extends Location {
-    @JsonProperty("type")
-    String type;
+public class CalendarEvent {
+    @JsonProperty("kind")
+    String kind;
 
-    @JsonProperty("status")
-    String status;
-
-    @JsonProperty("join_url")
-    String joinURL;
+    @JsonProperty("external_id")
+    String externalId;
 }

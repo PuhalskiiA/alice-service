@@ -18,5 +18,5 @@ public class NoShow {
     String uri;
 
     @JsonProperty("created_at")
-    Date createdAt;
+    String createdAt;
 }

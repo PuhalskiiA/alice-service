@@ -18,8 +18,8 @@ public class DateSettings {
     String type;
 
     @JsonProperty("start_date")
-    Date startDate;
+    String startDate;
 
     @JsonProperty("end_date")
-    Date endDate;
+    String endDate;
 }

@@ -43,10 +43,10 @@ public class Invitee {
     String event;
 
     @JsonProperty("created_at")
-    Date createdAt;
+    String createdAt;
 
     @JsonProperty("updated_at")
-    Date updatedAt;
+    String updatedAt;
 
     @JsonProperty("tracking")
     InviteeTracking inviteeTracking;

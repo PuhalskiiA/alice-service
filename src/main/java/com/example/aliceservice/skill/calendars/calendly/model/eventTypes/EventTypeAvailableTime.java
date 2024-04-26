@@ -21,7 +21,7 @@ public class EventTypeAvailableTime {
     Integer inviteesRemaining;
 
     @JsonProperty("start_time")
-    Date startTime;
+    String startTime;
 
     @JsonProperty("scheduling_url")
     String schedulingURL;

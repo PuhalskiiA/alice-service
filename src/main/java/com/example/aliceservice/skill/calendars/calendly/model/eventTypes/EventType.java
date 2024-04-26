@@ -45,10 +45,10 @@ public class EventType {
     String colour;
 
     @JsonProperty("created_at")
-    Date createdAt;
+    String createdAt;
 
     @JsonProperty("updated_at")
-    Date updatedAt;
+    String updatedAt;
 
     @JsonProperty("internal_note")
     String internalNote;
@@ -72,7 +72,7 @@ public class EventType {
     EventTypeCustomQuestion customQuestions;
 
     @JsonProperty("deleted_at")
-    Date deletedAt;
+    String deletedAt;
 
     @JsonProperty("admin_managed")
     boolean adminManaged;

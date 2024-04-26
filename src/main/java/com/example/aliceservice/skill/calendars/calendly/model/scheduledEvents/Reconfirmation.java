@@ -15,8 +15,8 @@ import java.util.Date;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Reconfirmation {
     @JsonProperty("created_at")
-    Date createdAt;
+    String createdAt;
 
     @JsonProperty("confirmed_at")
-    Date confirmedAt;
+    String confirmedAt;
 }

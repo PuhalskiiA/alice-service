@@ -1,5 +1,15 @@
 package com.example.aliceservice.skill.calendars.calendly.model.scheduledEvents.location;
 
-public class Location<T> {
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Location {
 
 }

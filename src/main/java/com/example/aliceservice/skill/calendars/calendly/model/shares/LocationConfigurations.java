@@ -1,4 +1,4 @@
-package com.example.aliceservice.skill.calendars.calendly.model.scheduledEvents.location;
+package com.example.aliceservice.skill.calendars.calendly.model.shares;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -11,13 +11,19 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class InPersonMeetingLocation extends Location {
-    @JsonProperty("type")
-    String type;
-
+public class LocationConfigurations {
     @JsonProperty("location")
     String location;
 
     @JsonProperty("additional_info")
     String additionalInfo;
+
+    @JsonProperty("phone_number")
+    String phoneNumber;
+
+    @JsonProperty("position")
+    Integer position;
+
+    @JsonProperty("kind")
+    String kind;
 }

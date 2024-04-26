@@ -37,6 +37,9 @@ public class YandexAliceServiceImpl implements YandexAliceService {
             yandexAliceResponse.getResponse().setText("Привет! Я твой персональный помощник в планировании дня, " +
                     "скажи \"расскажи о себе\", чтобы немного узнать обо мне.");
 
+            listOfButtons.add(new YAButton("Давай авторизируемся",
+                    new YandexOAuthServiceImpl().getCodeURL(applicationID, userID), true));
+
         } else if (skillRequest != null && skillRequest.getMarkup() != null &&
                 skillRequest.getMarkup().isDangerousContent()) {
 
@@ -52,6 +55,8 @@ public class YandexAliceServiceImpl implements YandexAliceService {
             yandexAliceResponse.getResponse().setText("Для авторизации нужен ЯндексID и чат со мной. " +
                     "Если ты уже в нем, просто нажми клавишу \"Давай авторизируемся\"");
 
+            yandexAliceResponse.setSessionState(SessionState.AUTHORIZED);
+
         } else if (skillRequest.getCommand().equals("спасибо")) {
 
             yandexAliceResponse.getResponse().setText("Стараемся, Клим Саныч, стараемся");
@@ -62,8 +67,6 @@ public class YandexAliceServiceImpl implements YandexAliceService {
 
         }
 
-        listOfButtons.add(new YAButton("Давай авторизируемся",
-                new YandexOAuthServiceImpl().getCodeURL(applicationID, userID), true));
         listOfButtons.add(new YAButton("Подключить Calendly",
                 new CalendlyOAuthServiceImpl().getCodeURL(userID), true));
 
