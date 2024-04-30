@@ -27,23 +27,6 @@ public class YandexAliceServiceImpl implements YandexAliceService {
 
         YandexAliceResponse handlerResponse = handler.getResponse(yandexAliceRequest);
 
-//        Calendly calendly = new Calendly();
-//
-//        LocalDateTime startTime = LocalDate.now().atStartOfDay();
-//        LocalDateTime endTime = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
-//
-//        DateParser dateParser = new DateParser();
-//
-//        String plans = calendly.getEventsTemporarily(userID, Sources.CALENDLY.toString(),
-//                dateParser.parseDate(startTime), dateParser.parseDate(endTime)).toString();
-//
-//        yandexAliceResponse.getResponse().setText("На сегодня у вас запланировано: " + plans);
-
-//        listOfButtons.add(new YAButton("Подключить Calendly",
-//                new CalendlyOAuthServiceImpl().getCodeURL(userID), true));
-//        listOfButtons.add(new YAButton("Давай авторизируемся",
-//                new YandexOAuthServiceImpl().getCodeURL(applicationID, userID), true));
-        
         return handlerResponse;
     }
 }

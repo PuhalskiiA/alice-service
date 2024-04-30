@@ -13,4 +13,6 @@ public interface UserService {
     UUID getIdByPsuid(String psuid);
 
     Optional<User> getUserByPsuid(String psuid);
+
+    Optional<User> checkSourceForUser(String psuid, String source);
 }

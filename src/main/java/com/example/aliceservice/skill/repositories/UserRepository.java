@@ -28,4 +28,8 @@ public interface UserRepository extends JpaRepository<User, UUID> {
    @Query(value = "select id from users where psuid = ?1", nativeQuery = true)
    UUID getIdByPsuid(String psuid);
 
+   @Query(value = "select users.* from users " +
+           "inner join tokens on users.id = user_id " +
+           "where psuid = ?1 and source = ?2", nativeQuery = true)
+   User checkSourceForUser(String psuid, String source);
 }

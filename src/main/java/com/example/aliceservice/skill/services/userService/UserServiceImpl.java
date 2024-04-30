@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
     public Optional<User> getUserByPsuid(String psuid) {
         return Optional.ofNullable(userRepository.getUserByPsuid(psuid));
     }
+
+    @Override
+    public Optional<User> checkSourceForUser(String psuid, String source) {
+        return Optional.ofNullable(userRepository.checkSourceForUser(psuid, source));
+    }
 }
