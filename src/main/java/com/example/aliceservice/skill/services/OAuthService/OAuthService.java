@@ -6,4 +6,6 @@ public interface OAuthService {
     ResponseEntity<String> authenticate(String code, String state);
 
     String getCodeURL(String state);
+
+    ResponseEntity<String> refreshToken();
 }

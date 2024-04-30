@@ -12,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Setter
+@Getter
 @Entity
 @Table(name = "users")
 public class User {
@@ -30,7 +31,4 @@ public class User {
 
     @Column(name = "psuid")
     private String psuid;
-
-    @Column(name = "application_id")
-    private String applicationID;
 }

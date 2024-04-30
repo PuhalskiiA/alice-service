@@ -65,15 +65,16 @@ public class YandexOAuthServiceImpl implements YandexOAuthService {
         OAuthResponseUserBody userDataResponseBody = userDataResponse.getBody();
         OAuthResponseTokenBody tokenResponseBody = tokenResponse.getBody();
 
-        Map<String, String> ids = parseState(state);
-        String applicationID = ids.get("applicationID");
-        String psuid = ids.get("userID");
         UUID localUserID = UUID.randomUUID();
 
         try {
-            User user = userService.getUserByPsuid(psuid);
+            Optional<User> user = userService.getUserByPsuid(state);
 
-            return new ResponseEntity<>(HttpStatus.ALREADY_REPORTED);
+            if (user.isPresent()) {
+                return new ResponseEntity<>(HttpStatus.ALREADY_REPORTED);
+            } else {
+                throw new UserNotFoundException("User not found");
+            }
 
         } catch (UserNotFoundException e) {
             userService.addUser(localUserID,
@@ -81,8 +82,7 @@ public class YandexOAuthServiceImpl implements YandexOAuthService {
                     userDataResponseBody.getLastName(),
                     userDataResponseBody.getDefaultEmail(),
                     userDataResponseBody.getSex(),
-                    psuid,
-                    applicationID);
+                    state);
             tokenService.addToken(UUID.randomUUID(),
                     tokenResponseBody.getAccessToken(),
                     tokenResponseBody.getRefreshToken(),
@@ -96,26 +96,15 @@ public class YandexOAuthServiceImpl implements YandexOAuthService {
     }
 
     @Override
-    public String getCodeURL(String applicationID, String userID) {
+    public String getCodeURL(String userID) {
         String url = "https://oauth.yandex.ru/authorize";
         String responseType = "code";
 
         String requestUrl = url +
                 "?response_type=" + responseType +
                 "&client_id=" + clientId +
-                "&state=" + applicationID + ":" + userID;
+                "&state=" + userID;
 
         return requestUrl;
-    }
-
-    private Map<String, String> parseState(String state) {
-        String[] parts = state.split(":");
-
-        Map<String, String> result = new HashMap<>();
-
-        result.put("applicationID", parts[0]);
-        result.put("userID", parts[1]);
-
-        return result;
     }
 }

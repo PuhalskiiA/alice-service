@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -26,4 +27,14 @@ public interface TokenRepository extends JpaRepository<Token, UUID> {
     void addToken(UUID id, String token, String refreshToken, UUID userID, String owner, String organization, String source);
 
     Token getTokenByUserIDAndSource(UUID userID, String source);
+
+    @Query(value = "select * from tokens " +
+            "inner join users on tokens.user_id = users.id " +
+            "where psuid = ?1 and source = ?2", nativeQuery = true)
+    Token getTokenByPsuidAndSource(String psuid, String source);
+
+    @Query(value = "select source from tokens " +
+            "inner join users on tokens.user_id = users.id " +
+            "where psuid = ?1", nativeQuery = true)
+    List<String> getSourcesByUserID(String psuid);
 }

@@ -1,20 +1,29 @@
 package com.example.aliceservice.skill.calendars.calendly;
 
-import com.example.aliceservice.skill.calendars.ICalendar;
-import com.example.aliceservice.skill.calendars.model.Event;
-import com.example.aliceservice.skill.model.OAuthModels.calendly.OAuthResponseBody;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import com.example.aliceservice.skill.calendars.calendly.model.availability.Collection;
+import com.example.aliceservice.skill.calendars.calendly.model.availability.UserBusyTime;
+import com.example.aliceservice.skill.model.entityes.Token;
+import com.example.aliceservice.skill.model.entityes.User;
+import com.example.aliceservice.skill.services.tokenService.TokenServiceImpl;
+import org.springframework.aop.scope.ScopedProxyUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
+import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class Calendly {
+    @Autowired
+    private TokenServiceImpl tokenService;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
     public void addEvent(String name, String host, int duration, Date start, Date end, String kindLocation) {
 //        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
 //
@@ -54,8 +63,27 @@ public class Calendly {
 //        return null;
 //    }
 //
-//    @Override
-//    public List<Event> getEventsTemporarily() {
-//        return null;
-//    }
+
+    public Collection getEventsTemporarily(String psuid, String source, String startTime, String endTime) {
+        Token token = tokenService.getTokenByPsuidAndSource(psuid, source);
+
+        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
+
+        requestBody.add("end_time", endTime);
+        requestBody.add("start_time", startTime);
+        requestBody.add("user", token.getOwner());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.add("Authorization", "Bearer " + token.getToken());
+
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
+
+        ResponseEntity<Collection> response = restTemplate.getForEntity("https://api.calendly.com\n" +
+                "/user_busy_times", Collection.class, requestEntity);
+
+        System.out.println("\n\n\n" + response.getBody() + "\n\n\n");
+
+        return response.getBody();
+    }
 }

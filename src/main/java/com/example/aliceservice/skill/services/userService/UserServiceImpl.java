@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(UUID id, String name, String surname, String email, String sex, String psuid, String applicationID) {
-        userRepository.addUser(id, name, surname, email, sex, psuid, applicationID);
+    public void addUser(UUID id, String name, String surname, String email, String sex, String psuid) {
+        userRepository.addUser(id, name, surname, email, sex, psuid);
     }
 
     @Override
@@ -36,13 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByPsuid(String psuid) {
-        Optional<User> userOpt = Optional.ofNullable(userRepository.getUserByPsuid(psuid));
-
-        if (userOpt.isPresent()) {
-            return userOpt.get();
-        } else {
-            throw new UserNotFoundException("User not found");
-        }
+    public Optional<User> getUserByPsuid(String psuid) {
+        return Optional.ofNullable(userRepository.getUserByPsuid(psuid));
     }
 }

@@ -22,14 +22,15 @@ public class TokenController {
     @Autowired
     TokenServiceImpl tokenService;
 
+    @PostMapping("/token")
+    public ResponseEntity<Token> getTokenByUserID(@PathVariable UUID id) {
+        try {
+            return new ResponseEntity<>(tokenService.getTokenByUserID(id), HttpStatus.OK);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
-//    @PostMapping("/token")
-//    public ResponseEntity<Token> getTokenByUserID(@PathVariable UUID id) {
-//        try {
-//            return new ResponseEntity<>(tokenService.getTokenByUserID(id), HttpStatus.OK);
-//        } catch (Exception e) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-//        }
-//    }
+
 
 }

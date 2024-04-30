@@ -10,7 +10,8 @@ import lombok.experimental.FieldDefaults;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data@FieldDefaults(level = AccessLevel.PRIVATE)
+@Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class YandexAliceResponse {
     //Data for answer to user
     YASkillResponse response;

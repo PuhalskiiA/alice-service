@@ -8,6 +8,7 @@ import com.example.aliceservice.skill.repositories.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,5 +46,21 @@ public class TokenServiceImpl implements TokenService {
         } else {
             throw new TokenNotFoundException("Token not found");
         }
+    }
+
+    @Override
+    public Token getTokenByPsuidAndSource(String psuid, String source) {
+        Optional<Token> tokenOpt = Optional.ofNullable(tokenRepository.getTokenByPsuidAndSource(psuid, source));
+
+        if (tokenOpt.isPresent()) {
+            return tokenOpt.get();
+        } else {
+            throw new TokenNotFoundException("Token not found");
+        }
+    }
+
+    @Override
+    public List<String> getSourcesByUserID(String psuid) {
+        return tokenRepository.getSourcesByUserID(psuid);
     }
 }

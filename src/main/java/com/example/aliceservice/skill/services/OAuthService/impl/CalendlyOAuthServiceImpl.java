@@ -81,4 +81,9 @@ public class CalendlyOAuthServiceImpl implements OAuthService {
 
         return requestUrl;
     }
+
+    @Override
+    public ResponseEntity<String> refreshToken() {
+        return null;
+    }
 }

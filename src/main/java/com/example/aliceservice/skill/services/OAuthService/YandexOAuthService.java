@@ -8,5 +8,5 @@ import java.util.Map;
 public interface YandexOAuthService {
     ResponseEntity<String> authenticate(String code, String state);
 
-    String getCodeURL(String applicationID, String userID);
+    String getCodeURL(String userID);
 }
