@@ -6,7 +6,7 @@ import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
 import org.springframework.stereotype.Service;
 
 @Service
-@CommandHandler(commands = {"asd", "asd"})
+@CommandHandler(commands = {"расскажи о себе"})
 public class SelfInfoHandler extends Handler {
     @Override
     public YandexAliceResponse getResponse(YandexAliceRequest yandexAliceRequest) {

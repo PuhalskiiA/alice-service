@@ -14,7 +14,7 @@ public class YandexAliceServiceImpl implements YandexAliceService {
 
     @Override
     public YandexAliceResponse talkYandexAlice(YandexAliceRequest yandexAliceRequest) {
-        YandexAliceResponse yandexAliceResponse = new YandexAliceResponse();
+        YandexAliceResponse yandexAliceResponse = new YandexAliceResponse(new YASkillResponse(), null, "1.0");
         String command = yandexAliceRequest.getRequest().getCommand();
 
         Handler handler = commandHandlersRepository.getHandler(command);
@@ -43,8 +43,7 @@ public class YandexAliceServiceImpl implements YandexAliceService {
 //                new CalendlyOAuthServiceImpl().getCodeURL(userID), true));
 //        listOfButtons.add(new YAButton("Давай авторизируемся",
 //                new YandexOAuthServiceImpl().getCodeURL(applicationID, userID), true));
-
-        System.out.println(handlerResponse);
+        
         return handlerResponse;
     }
 }
