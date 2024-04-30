@@ -1,6 +1,5 @@
-package com.example.aliceservice.skill.util;
+package com.example.aliceservice.skill.util.handlers;
 
-import com.example.aliceservice.skill.util.handlers.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;

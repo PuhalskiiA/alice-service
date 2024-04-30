@@ -1,12 +1,12 @@
 package com.example.aliceservice.skill.util.handlers.calendlyHandlers;
 
+import com.example.aliceservice.skill.util.handlers.Handler;
 import com.example.aliceservice.skill.calendars.calendly.Calendly;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
 import com.example.aliceservice.skill.util.DateParser;
 import com.example.aliceservice.skill.util.Sources;
 import com.example.aliceservice.skill.util.handlers.CommandHandler;
-import com.example.aliceservice.skill.util.handlers.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

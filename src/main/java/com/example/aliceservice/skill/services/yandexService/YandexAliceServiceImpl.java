@@ -2,7 +2,7 @@ package com.example.aliceservice.skill.services.yandexService;
 
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.*;
-import com.example.aliceservice.skill.util.CommandHandlersRepository;
+import com.example.aliceservice.skill.util.handlers.CommandHandlersRepository;
 import com.example.aliceservice.skill.util.handlers.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

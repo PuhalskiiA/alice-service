@@ -1,17 +1,16 @@
-package com.example.aliceservice.skill.util.handlers;
+package com.example.aliceservice.skill.util.handlers.yadexIDHandlers;
 
+import com.example.aliceservice.skill.util.handlers.CommandHandler;
+import com.example.aliceservice.skill.util.handlers.Handler;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAButton;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
 import com.example.aliceservice.skill.model.entityes.User;
-import com.example.aliceservice.skill.services.OAuthService.OAuthService;
 import com.example.aliceservice.skill.services.OAuthService.YandexOAuthService;
 import com.example.aliceservice.skill.services.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
