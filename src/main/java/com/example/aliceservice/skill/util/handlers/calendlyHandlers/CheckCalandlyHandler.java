@@ -1,5 +1,6 @@
 package com.example.aliceservice.skill.util.handlers.calendlyHandlers;
 
+import com.example.aliceservice.skill.model.alice.SessionState;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAButton;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@CommandHandler(commands = {"проверь подключение к calandly"})
+@CommandHandler(commands = {"проверь подключение к calandly"}, state = SessionState.CALENDLY)
 public class CheckCalandlyHandler extends Handler {
     @Autowired
     @Qualifier("calendlyOAuthServiceImpl")
@@ -36,6 +37,7 @@ public class CheckCalandlyHandler extends Handler {
 
         if (user.isPresent()) {
             yandexAliceResponse.getResponse().setText(user.get().getName() + ", все получилось!");
+            yandexAliceResponse.setSessionState(SessionState.INITIAL);
         } else {
             buttons.add(new YAButton("Подключить Calendly",
                     oAuthService.getCodeURL(getUserPsuid(yandexAliceRequest)), true));

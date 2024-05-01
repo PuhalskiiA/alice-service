@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@CommandHandler(commands = {"доступные календари"})
+@CommandHandler(commands = {"доступные календари"}, state = SessionState.INITIAL)
 public class SourcesHandler extends Handler {
     @Autowired
     private TokenService tokenService;
@@ -25,7 +25,6 @@ public class SourcesHandler extends Handler {
         if (userSources == null) {
 
             yandexAliceResponse.getResponse().setText("Нет доступных календарей");
-            yandexAliceResponse.setSessionState(SessionState.INITIAL);
             
             return yandexAliceResponse;
         }

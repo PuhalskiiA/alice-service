@@ -1,5 +1,6 @@
 package com.example.aliceservice.skill.util.handlers.introduction;
 
+import com.example.aliceservice.skill.model.alice.SessionState;
 import com.example.aliceservice.skill.util.handlers.Handler;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAButton;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@CommandHandler(commands = {""})
+@CommandHandler(commands = {""}, state = SessionState.INITIAL)
 public class HelloHandler extends Handler {
     @Autowired
     private YandexOAuthService yandexOAuthService;
@@ -24,13 +25,13 @@ public class HelloHandler extends Handler {
 
         List<YAButton> buttons = new ArrayList<>();
 
-        yandexAliceResponse.getResponse().setText("Привет! Я твой персональный помощник в планировании дня, скажи \"расскажи о себе\", " +
-                "чтобы немного узнать обо мне.");
-
         buttons.add(new YAButton("Авторизироваться",
                 yandexOAuthService.getCodeURL(getUserPsuid(yandexAliceRequest)), true));
 
+        yandexAliceResponse.getResponse().setText("Привет! Я твой персональный помощник в планировании дня, скажи \"расскажи о себе\", " +
+                "чтобы немного узнать обо мне.");
         yandexAliceResponse.getResponse().setButtons(buttons);
+        yandexAliceResponse.setSessionState(SessionState.INITIAL);
 
         return yandexAliceResponse;
     }

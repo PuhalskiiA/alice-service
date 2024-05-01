@@ -1,6 +1,9 @@
 package com.example.aliceservice.skill.services.yandexService;
 
+import com.example.aliceservice.skill.model.alice.SessionState;
+import com.example.aliceservice.skill.model.alice.request.YAState;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
+import com.example.aliceservice.skill.model.alice.request.states.YAUserState;
 import com.example.aliceservice.skill.model.alice.response.*;
 import com.example.aliceservice.skill.util.handlers.CommandHandlersRepository;
 import com.example.aliceservice.skill.util.handlers.Handler;
@@ -16,8 +19,15 @@ public class YandexAliceServiceImpl implements YandexAliceService {
     public YandexAliceResponse talkYandexAlice(YandexAliceRequest yandexAliceRequest) {
         YandexAliceResponse yandexAliceResponse = new YandexAliceResponse(new YASkillResponse(), null, "1.0");
         String command = yandexAliceRequest.getRequest().getCommand();
+        SessionState state = yandexAliceRequest.getSessionState().getUserState().getState();
 
-        Handler handler = commandHandlersRepository.getHandler(command);
+        //Enter point
+        if (state == null) {
+            state = SessionState.INITIAL;
+            yandexAliceRequest.setSessionState(new YAState(null, new YAUserState(state), null));
+        }
+
+        Handler handler = commandHandlersRepository.getHandler(command + ":" + state);
 
         //Command not found
         if (handler == null) {
@@ -25,8 +35,6 @@ public class YandexAliceServiceImpl implements YandexAliceService {
             return yandexAliceResponse;
         }
 
-        YandexAliceResponse handlerResponse = handler.getResponse(yandexAliceRequest);
-
-        return handlerResponse;
+        return handler.getResponse(yandexAliceRequest);
     }
 }

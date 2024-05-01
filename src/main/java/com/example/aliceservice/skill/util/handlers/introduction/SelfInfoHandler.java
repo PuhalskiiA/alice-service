@@ -1,5 +1,6 @@
 package com.example.aliceservice.skill.util.handlers.introduction;
 
+import com.example.aliceservice.skill.model.alice.SessionState;
 import com.example.aliceservice.skill.util.handlers.Handler;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAButton;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@CommandHandler(commands = {"расскажи о себе"})
+@CommandHandler(commands = {"расскажи о себе"}, state = SessionState.INITIAL)
 public class SelfInfoHandler extends Handler {
     @Autowired
     @Qualifier("calendlyOAuthServiceImpl")

@@ -8,10 +8,8 @@ public abstract class Handler {
     protected YandexAliceResponse getDefaultResponse(YandexAliceRequest yandexAliceRequest) {
         YASkillResponse skillResponse = new YASkillResponse();
 
-        YandexAliceResponse yandexAliceResponse = new YandexAliceResponse(skillResponse,
+        return new YandexAliceResponse(skillResponse,
                 yandexAliceRequest.getSessionState().getSessionState().getState(), "1.0");
-
-        return yandexAliceResponse;
     }
 
     protected String getUserPsuid(YandexAliceRequest yandexAliceRequest) {
