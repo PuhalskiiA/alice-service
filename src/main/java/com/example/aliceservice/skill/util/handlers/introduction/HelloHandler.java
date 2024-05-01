@@ -1,6 +1,7 @@
 package com.example.aliceservice.skill.util.handlers.introduction;
 
 import com.example.aliceservice.skill.model.alice.SessionState;
+import com.example.aliceservice.skill.model.alice.response.YAResponseSessionState;
 import com.example.aliceservice.skill.util.handlers.Handler;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAButton;
@@ -23,6 +24,8 @@ public class HelloHandler extends Handler {
     public YandexAliceResponse getResponse(YandexAliceRequest yandexAliceRequest) {
         YandexAliceResponse yandexAliceResponse = getDefaultResponse(yandexAliceRequest);
 
+        System.out.println("\n\n\n" + yandexAliceRequest + "\n\n\n");
+
         List<YAButton> buttons = new ArrayList<>();
 
         buttons.add(new YAButton("Авторизироваться",
@@ -31,7 +34,7 @@ public class HelloHandler extends Handler {
         yandexAliceResponse.getResponse().setText("Привет! Я твой персональный помощник в планировании дня, скажи \"расскажи о себе\", " +
                 "чтобы немного узнать обо мне.");
         yandexAliceResponse.getResponse().setButtons(buttons);
-        yandexAliceResponse.setSessionState(SessionState.INITIAL);
+        yandexAliceResponse.setSessionState(new YAResponseSessionState(SessionState.INITIAL));
 
         return yandexAliceResponse;
     }

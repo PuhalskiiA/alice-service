@@ -24,7 +24,7 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         //Enter point
         if (state == null) {
             state = SessionState.INITIAL;
-            yandexAliceRequest.setSessionState(new YAState(null, new YAUserState(state), null));
+            yandexAliceRequest.getSessionState().getUserState().setState(state);
         }
 
         Handler handler = commandHandlersRepository.getHandler(command + ":" + state);

@@ -1,6 +1,7 @@
 package com.example.aliceservice.skill.util.handlers.yadexIDHandlers;
 
 import com.example.aliceservice.skill.model.alice.SessionState;
+import com.example.aliceservice.skill.model.alice.response.YAResponseSessionState;
 import com.example.aliceservice.skill.util.handlers.CommandHandler;
 import com.example.aliceservice.skill.util.handlers.Handler;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
@@ -15,7 +16,7 @@ public class AuthorizeHandler extends Handler {
         YandexAliceResponse yandexAliceResponse = getDefaultResponse(yandexAliceRequest);
 
         yandexAliceResponse.getResponse().setText("Скажите \"проверь авторизацию\", чтобы понять, что все прошло успешно");
-        yandexAliceResponse.setSessionState(SessionState.AUTHORIZATION);
+        yandexAliceResponse.setSessionState(new YAResponseSessionState(SessionState.AUTHORIZATION));
 
         return yandexAliceResponse;
     }

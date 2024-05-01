@@ -3,6 +3,7 @@ package com.example.aliceservice.skill.util.handlers.calendlyHandlers;
 import com.example.aliceservice.skill.model.alice.SessionState;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAButton;
+import com.example.aliceservice.skill.model.alice.response.YAResponseSessionState;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
 import com.example.aliceservice.skill.model.entityes.User;
 import com.example.aliceservice.skill.services.OAuthService.OAuthService;
@@ -37,7 +38,7 @@ public class CheckCalandlyHandler extends Handler {
 
         if (user.isPresent()) {
             yandexAliceResponse.getResponse().setText(user.get().getName() + ", все получилось!");
-            yandexAliceResponse.setSessionState(SessionState.INITIAL);
+            yandexAliceResponse.setSessionState(new YAResponseSessionState(SessionState.INITIAL));
         } else {
             buttons.add(new YAButton("Подключить Calendly",
                     oAuthService.getCodeURL(getUserPsuid(yandexAliceRequest)), true));

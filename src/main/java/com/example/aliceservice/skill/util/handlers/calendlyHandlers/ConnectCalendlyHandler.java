@@ -1,6 +1,7 @@
 package com.example.aliceservice.skill.util.handlers.calendlyHandlers;
 
 import com.example.aliceservice.skill.model.alice.SessionState;
+import com.example.aliceservice.skill.model.alice.response.YAResponseSessionState;
 import com.example.aliceservice.skill.util.handlers.Handler;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
@@ -16,7 +17,7 @@ public class ConnectCalendlyHandler extends Handler {
 
         yandexAliceResponse.getResponse().setText("Скажи \"проверь подключение к calandly\", чтобы понять, " +
                 "что все прошло успешно");
-        yandexAliceResponse.setSessionState(SessionState.CALENDLY);
+        yandexAliceResponse.setSessionState(new YAResponseSessionState(SessionState.CALENDLY));
 
         return yandexAliceResponse;
     }

@@ -1,6 +1,7 @@
 package com.example.aliceservice.skill.util.handlers.yadexIDHandlers;
 
 import com.example.aliceservice.skill.model.alice.SessionState;
+import com.example.aliceservice.skill.model.alice.response.YAResponseSessionState;
 import com.example.aliceservice.skill.util.handlers.CommandHandler;
 import com.example.aliceservice.skill.util.handlers.Handler;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
@@ -34,7 +35,7 @@ public class CheckAuthorized extends Handler {
 
         if (user.isPresent()) {
             yandexAliceResponse.getResponse().setText(user.get().getName() + ", все прошло успешно!");
-            yandexAliceResponse.setSessionState(SessionState.INITIAL);
+            yandexAliceResponse.setSessionState(new YAResponseSessionState(SessionState.INITIAL));
         } else {
             buttons.add(new YAButton("Авторизироваться",
                     yandexOAuthService.getCodeURL(getUserPsuid(yandexAliceRequest)), true));
