@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@CommandHandler(commands = {"проверь подключение к calandly"}, state = SessionState.CALENDLY)
+@CommandHandler(commands = {"проверь подключение к calandly"}, state = SessionState.INITIAL)
 public class CheckCalandlyHandler extends Handler {
     @Autowired
     @Qualifier("calendlyOAuthServiceImpl")
@@ -38,7 +38,6 @@ public class CheckCalandlyHandler extends Handler {
 
         if (user.isPresent()) {
             yandexAliceResponse.getResponse().setText(user.get().getName() + ", все получилось!");
-            yandexAliceResponse.setSessionState(new YAResponseSessionState(SessionState.INITIAL));
         } else {
             buttons.add(new YAButton("Подключить Calendly",
                     oAuthService.getCodeURL(getUserPsuid(yandexAliceRequest)), true));

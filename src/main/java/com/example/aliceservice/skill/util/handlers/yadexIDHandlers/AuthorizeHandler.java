@@ -15,8 +15,8 @@ public class AuthorizeHandler extends Handler {
     public YandexAliceResponse getResponse(YandexAliceRequest yandexAliceRequest) {
         YandexAliceResponse yandexAliceResponse = getDefaultResponse(yandexAliceRequest);
 
-        yandexAliceResponse.getResponse().setText("Скажите \"проверь авторизацию\", чтобы понять, что все прошло успешно");
-        yandexAliceResponse.setSessionState(new YAResponseSessionState(SessionState.AUTHORIZATION));
+        yandexAliceResponse.getResponse().setText("Скажи \"проверить авторизацию\", чтобы понять, " +
+                "что все прошло успешно.");
 
         return yandexAliceResponse;
     }

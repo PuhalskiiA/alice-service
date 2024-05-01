@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@CommandHandler(commands = {"проверь авторизацию"}, state = SessionState.AUTHORIZATION)
+@CommandHandler(commands = {"проверить авторизацию"}, state = SessionState.INITIAL)
 public class CheckAuthorized extends Handler {
     @Autowired
     private YandexOAuthService yandexOAuthService;
@@ -34,13 +34,13 @@ public class CheckAuthorized extends Handler {
         Optional<User> user = userService.getUserByPsuid(getUserPsuid(yandexAliceRequest));
 
         if (user.isPresent()) {
-            yandexAliceResponse.getResponse().setText(user.get().getName() + ", все прошло успешно!");
-            yandexAliceResponse.setSessionState(new YAResponseSessionState(SessionState.INITIAL));
+            yandexAliceResponse.getResponse().setText(user.get().getName() + ", все прошло успешно! Можно продолжать дальше.");
         } else {
+            yandexAliceResponse.getResponse().setText("Что то пошло не так:( Попробуй снова.");
+
             buttons.add(new YAButton("Авторизироваться",
                     yandexOAuthService.getCodeURL(getUserPsuid(yandexAliceRequest)), true));
 
-            yandexAliceResponse.getResponse().setText("Что то пошло не так:( Попробуй снова.");
             yandexAliceResponse.getResponse().setButtons(buttons);
         }
 
