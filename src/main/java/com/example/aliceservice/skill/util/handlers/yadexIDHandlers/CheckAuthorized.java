@@ -34,7 +34,7 @@ public class CheckAuthorized extends Handler {
         Optional<User> user = userService.getUserByPsuid(getUserPsuid(yandexAliceRequest));
 
         if (user.isPresent()) {
-            yandexAliceResponse.getResponse().setText(user.get().getName() + ", все прошло успешно! Можно продолжать дальше.");
+            yandexAliceResponse.getResponse().setText(user.get().getName() + ", все прошло успешно!");
         } else {
             yandexAliceResponse.getResponse().setText("Что то пошло не так:( Попробуй снова.");
 

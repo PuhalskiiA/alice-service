@@ -9,7 +9,7 @@ import com.example.aliceservice.skill.util.handlers.Handler;
 import org.springframework.stereotype.Service;
 
 @Service
-@CommandHandler(commands = {"запусти calendly"}, state = SessionState.INITIAL)
+@CommandHandler(commands = {"запусти барабашку"}, state = SessionState.INITIAL)
 public class SelectCalendlyHandler extends Handler {
 
     @Override

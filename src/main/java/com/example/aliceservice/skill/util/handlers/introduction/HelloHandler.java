@@ -1,7 +1,6 @@
 package com.example.aliceservice.skill.util.handlers.introduction;
 
 import com.example.aliceservice.skill.model.alice.SessionState;
-import com.example.aliceservice.skill.model.alice.response.YAResponseSessionState;
 import com.example.aliceservice.skill.model.entityes.User;
 import com.example.aliceservice.skill.services.OAuthService.OAuthService;
 import com.example.aliceservice.skill.services.userService.UserService;
@@ -41,7 +40,10 @@ public class HelloHandler extends Handler {
         Optional<User> user = userService.getUserByPsuid(getUserPsuid(yandexAliceRequest));
 
         if (user.isPresent()) {
-            yandexAliceResponse.getResponse().setText("Здравствуй, " + user.get().getName() + "! Рада снова тебя услышать!");
+            yandexAliceResponse.getResponse().setText("Здравствуй, " + user.get().getName() + "! Рада снова тебя услышать! " +
+                    "Скажи слово \"запустить\" и название календаря для начала работы.");
+            buttons.add(new YAButton("Подключить Calendly",
+                    oAuthService.getCodeURL(getUserPsuid(yandexAliceRequest)), true));
         } else {
             yandexAliceResponse.getResponse().setText("Привет! Я твой персональный помощник в планировании дня, скажи \"расскажи о себе\", " +
                     "чтобы немного узнать обо мне.");

@@ -8,7 +8,7 @@ import com.example.aliceservice.skill.util.handlers.CommandHandler;
 import org.springframework.stereotype.Service;
 
 @Service
-@CommandHandler(commands = {"ping"}, state = SessionState.PING)
+@CommandHandler(commands = {"ping"}, state = SessionState.INITIAL)
 public class PingHandler extends Handler {
     @Override
     public YandexAliceResponse getResponse(YandexAliceRequest yandexAliceRequest) {
