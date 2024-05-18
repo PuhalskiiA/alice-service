@@ -1,13 +1,9 @@
 package com.example.aliceservice.skill.util.handlers;
 
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
-import com.example.aliceservice.skill.model.alice.response.YAButton;
 import com.example.aliceservice.skill.model.alice.response.YAResponseSessionState;
 import com.example.aliceservice.skill.model.alice.response.YASkillResponse;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
-
-import java.util.List;
-import java.util.ListResourceBundle;
 
 public abstract class Handler {
     protected YandexAliceResponse getDefaultResponse(YandexAliceRequest yandexAliceRequest) {

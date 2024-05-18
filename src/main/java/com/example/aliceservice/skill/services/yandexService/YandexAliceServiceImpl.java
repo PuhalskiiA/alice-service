@@ -36,18 +36,18 @@ public class YandexAliceServiceImpl implements YandexAliceService {
 
         Handler handler = commandHandlersRepository.getHandler(command + ":" + state);
 
-        if (state == SessionState.AUTHORIZE) {
-            List<YAButton> buttons = new ArrayList<>();
-
-            buttons.add(new YAButton("Авторизироваться",
-                    yandexOAuthService.getCodeURL(yandexAliceRequest.getSession().getUser().getUserId()), true));
-
-            yandexAliceResponse.getResponse().setText("Нужно авторизироваться, чтобы продолжить общение. " +
-                    "Если вы уже это сделали, скажите \"проверить авторизацию\".");
-            yandexAliceResponse.getResponse().setButtons(buttons);
-
-            return yandexAliceResponse;
-        }
+//        if (state == SessionState.AUTHORIZE) {
+//            List<YAButton> buttons = new ArrayList<>();
+//
+//            buttons.add(new YAButton("Авторизироваться",
+//                    yandexOAuthService.getCodeURL(yandexAliceRequest.getSession().getUser().getUserId()), true));
+//
+//            yandexAliceResponse.getResponse().setText("Нужно авторизироваться, чтобы продолжить общение. " +
+//                    "Если вы уже это сделали, скажите \"проверить авторизацию\".");
+//            yandexAliceResponse.getResponse().setButtons(buttons);
+//
+//            return yandexAliceResponse;
+//        }
 
         //Command not found
         if (handler == null) {
