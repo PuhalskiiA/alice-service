@@ -16,7 +16,8 @@ public class YandexAliceResponse {
     //Data for answer to user
     YASkillResponse response;
 
-    SessionState sessionState;
+    @JsonProperty("user_state_update")
+    YAResponseSessionState sessionState;
 
     //Protocol version
     String version = "1.0";

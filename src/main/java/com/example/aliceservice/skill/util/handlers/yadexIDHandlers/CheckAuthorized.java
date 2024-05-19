@@ -1,5 +1,7 @@
 package com.example.aliceservice.skill.util.handlers.yadexIDHandlers;
 
+import com.example.aliceservice.skill.model.alice.SessionState;
+import com.example.aliceservice.skill.model.alice.response.YAResponseSessionState;
 import com.example.aliceservice.skill.util.handlers.CommandHandler;
 import com.example.aliceservice.skill.util.handlers.Handler;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
@@ -16,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@CommandHandler(commands = {"проверь авторизацию"})
+@CommandHandler(commands = {"проверить авторизацию"}, state = SessionState.INITIAL)
 public class CheckAuthorized extends Handler {
     @Autowired
     private YandexOAuthService yandexOAuthService;
@@ -34,10 +36,11 @@ public class CheckAuthorized extends Handler {
         if (user.isPresent()) {
             yandexAliceResponse.getResponse().setText(user.get().getName() + ", все прошло успешно!");
         } else {
+            yandexAliceResponse.getResponse().setText("Что то пошло не так:( Попробуй снова.");
+
             buttons.add(new YAButton("Авторизироваться",
                     yandexOAuthService.getCodeURL(getUserPsuid(yandexAliceRequest)), true));
 
-            yandexAliceResponse.getResponse().setText("Что то пошло не так:( Попробуй снова.");
             yandexAliceResponse.getResponse().setButtons(buttons);
         }
 

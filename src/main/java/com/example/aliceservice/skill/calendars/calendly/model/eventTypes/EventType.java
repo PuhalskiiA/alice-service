@@ -1,5 +1,6 @@
 package com.example.aliceservice.skill.calendars.calendly.model.eventTypes;
 
+import com.example.aliceservice.skill.model.сalendars.Event;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -7,13 +8,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Date;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class EventType {
+public class EventType extends Event {
     @JsonProperty("uri")
     String uri;
 

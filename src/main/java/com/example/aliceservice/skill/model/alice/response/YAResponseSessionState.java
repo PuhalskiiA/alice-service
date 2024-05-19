@@ -1,6 +1,7 @@
 package com.example.aliceservice.skill.model.alice.response;
 
 import com.example.aliceservice.skill.model.alice.SessionState;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +13,6 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class YAResponseSessionState {
-    //Value for state
+    @JsonProperty("value")
     SessionState value;
 }

@@ -18,7 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class WebhookController {
     @Autowired
-    private YandexAliceServiceImpl aliceService;
+    YandexAliceServiceImpl aliceService;
 
     @PostMapping(value = "/webhook")
     public YandexAliceResponse receiveWebhook(@RequestBody YandexAliceRequest request) {

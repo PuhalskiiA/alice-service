@@ -1,5 +1,6 @@
 package com.example.aliceservice.skill.util.handlers.calendlyHandlers;
 
+import com.example.aliceservice.skill.model.alice.SessionState;
 import com.example.aliceservice.skill.util.handlers.Handler;
 import com.example.aliceservice.skill.calendars.calendly.Calendly;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Service
-@CommandHandler(commands = {"дай список дел на сегодня"})
+@CommandHandler(commands = {"дай список дел на сегодня"}, state = SessionState.CALENDLY)
 public class PlanListCalendlyHandler extends Handler {
     @Autowired
     private Calendly calendly;
