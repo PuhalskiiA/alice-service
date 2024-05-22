@@ -28,7 +28,7 @@ public interface TokenRepository extends JpaRepository<Token, UUID> {
 
     Token getTokenByUserIDAndSource(UUID userID, String source);
 
-    @Query(value = "select * from tokens " +
+    @Query(value = "select tokens.* from tokens " +
             "inner join users on tokens.user_id = users.id " +
             "where psuid = ?1 and source = ?2", nativeQuery = true)
     Token getTokenByPsuidAndSource(String psuid, String source);

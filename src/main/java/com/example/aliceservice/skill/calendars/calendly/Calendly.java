@@ -1,23 +1,25 @@
 package com.example.aliceservice.skill.calendars.calendly;
 
+import com.example.aliceservice.skill.calendars.Calendars;
+import com.example.aliceservice.skill.calendars.EventInfo;
 import com.example.aliceservice.skill.calendars.calendly.model.availability.Collection;
-import com.example.aliceservice.skill.calendars.calendly.model.availability.UserBusyTime;
 import com.example.aliceservice.skill.model.entityes.Token;
-import com.example.aliceservice.skill.model.entityes.User;
 import com.example.aliceservice.skill.services.tokenService.TokenServiceImpl;
-import org.springframework.aop.scope.ScopedProxyUtils;
+import org.apache.http.client.methods.HttpPost;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
-import java.util.List;
 
 @Service
-public class Calendly {
+public class Calendly implements Calendars {
     @Autowired
     private TokenServiceImpl tokenService;
 
@@ -45,45 +47,38 @@ public class Calendly {
 
     }
 
-    public void updateEvent() {
+//    public Collection getEventsTemporarily(String psuid, String source, String startTime, String endTime) {
+//        Token token = tokenService.getTokenByPsuidAndSource(psuid, source);
+//
+//        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
+//
+//        requestBody.add("end_time", endTime);
+//        requestBody.add("start_time", startTime);
+//        requestBody.add("user", token.getOwner());
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+//        headers.add("Authorization", "Bearer " + token.getToken());
+//
+//        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
+//
+//        ResponseEntity<Collection> response = restTemplate.getForEntity("https://api.calendly.com\n" +
+//                "/user_busy_times", Collection.class, requestEntity);
+//
+//        System.out.println("\n\n\n" + response.getBody() + "\n\n\n");
+//
+//        return response.getBody();
+//    }
 
+    @Override
+    public void addPlan(EventInfo event) {
+        HttpPost request = new HttpPost("https://api.calendly.com/one_off_event_types");
     }
 
-    public void deleteEvent() {
+    @Override
+    public String getEvents(EventInfo event) {
 
-    }
-//
-//    @Override
-//    public Event getEvent() {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<Event> getEventsByDay() {
-//        return null;
-//    }
-//
-
-    public Collection getEventsTemporarily(String psuid, String source, String startTime, String endTime) {
-        Token token = tokenService.getTokenByPsuidAndSource(psuid, source);
-
-        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
-
-        requestBody.add("end_time", endTime);
-        requestBody.add("start_time", startTime);
-        requestBody.add("user", token.getOwner());
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.add("Authorization", "Bearer " + token.getToken());
-
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
-
-        ResponseEntity<Collection> response = restTemplate.getForEntity("https://api.calendly.com\n" +
-                "/user_busy_times", Collection.class, requestEntity);
-
-        System.out.println("\n\n\n" + response.getBody() + "\n\n\n");
-
-        return response.getBody();
+        return "\nСозвон по поводу дня рождения, сегодня, 12:00\n" +
+                "Обсуждение проекта, сегодня, 14:00";
     }
 }

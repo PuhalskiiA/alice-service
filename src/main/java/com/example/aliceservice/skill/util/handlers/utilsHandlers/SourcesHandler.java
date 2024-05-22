@@ -1,11 +1,9 @@
 package com.example.aliceservice.skill.util.handlers.utilsHandlers;
 
-import com.example.aliceservice.skill.model.alice.SessionState;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAButton;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
 import com.example.aliceservice.skill.services.OAuthService.OAuthService;
-import com.example.aliceservice.skill.services.OAuthService.YandexOAuthService;
 import com.example.aliceservice.skill.util.Sources;
 import com.example.aliceservice.skill.util.handlers.CommandHandler;
 import com.example.aliceservice.skill.util.handlers.Handler;
@@ -16,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@CommandHandler(commands = {"доступные календари"}, state = SessionState.INITIAL)
+@CommandHandler(commands = {"доступные календари"})
 public class SourcesHandler extends Handler {
     @Autowired
     private OAuthService oAuthService;
@@ -29,9 +27,7 @@ public class SourcesHandler extends Handler {
         List<String> sourcesList = new ArrayList<>();
 
         for (Sources source : Sources.values()) {
-            if (source != Sources.YANDEX) {
-                sourcesList.add(source.toString());
-            }
+            if (source != Sources.YANDEX) sourcesList.add(source.toString());
         }
 
         yandexAliceResponse.getResponse().setText("Сейчас поддерживаются следующие календари: " +

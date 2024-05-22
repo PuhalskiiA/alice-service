@@ -1,6 +1,5 @@
 package com.example.aliceservice.skill.util.handlers.utilsHandlers;
 
-import com.example.aliceservice.skill.model.alice.SessionState;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
 import com.example.aliceservice.skill.util.handlers.CommandHandler;
@@ -11,7 +10,7 @@ import java.util.Map;
 import java.util.Random;
 
 @Service
-@CommandHandler(commands = {"спасибо", "умница", "благодарю", "хорошая работа", "thanks"}, state = SessionState.INITIAL)
+@CommandHandler(commands = {"спасибо", "умница", "благодарю", "хорошая работа", "thanks"})
 public class GoodResponseHandler extends Handler {
     @Override
     public YandexAliceResponse getResponse(YandexAliceRequest yandexAliceRequest) {

@@ -3,6 +3,7 @@ package com.example.aliceservice.skill.services.tokenService;
 import com.example.aliceservice.skill.model.entityes.Token;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface TokenService {
@@ -16,7 +17,7 @@ public interface TokenService {
 
     Token getTokenByUserIDAndSource(UUID userID, String source);
 
-    Token getTokenByPsuidAndSource(String psuid, String source);
+    Optional<Token> getTokenByPsuidAndSource(String psuid, String source);
 
     List<String> getSourcesByUserID(String psuid);
 }

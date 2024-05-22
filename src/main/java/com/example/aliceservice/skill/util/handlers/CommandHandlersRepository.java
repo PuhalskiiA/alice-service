@@ -1,6 +1,5 @@
 package com.example.aliceservice.skill.util.handlers;
 
-import com.example.aliceservice.skill.model.alice.SessionState;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
@@ -18,10 +17,9 @@ public class CommandHandlersRepository {
         handlers.forEach(commandHandler -> {
             if (commandHandler.getClass().isAnnotationPresent(CommandHandler.class)) {
                 String[] commands = commandHandler.getClass().getAnnotation(CommandHandler.class).commands();
-                SessionState state = commandHandler.getClass().getAnnotation(CommandHandler.class).state();
 
                 for (String command : commands) {
-                    this.handlers.put(command + ":" + state, commandHandler);
+                    this.handlers.put(command, commandHandler);
                 }
             }
         });

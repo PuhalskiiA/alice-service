@@ -1,6 +1,5 @@
 package com.example.aliceservice.skill.util.handlers.introduction;
 
-import com.example.aliceservice.skill.model.alice.SessionState;
 import com.example.aliceservice.skill.model.entityes.User;
 import com.example.aliceservice.skill.services.OAuthService.OAuthService;
 import com.example.aliceservice.skill.services.userService.UserService;
@@ -19,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@CommandHandler(commands = {""}, state = SessionState.INITIAL)
+@CommandHandler(commands = {"", "на главную", "главная", "привет"})
 public class HelloHandler extends Handler {
     @Autowired
     @Qualifier("calendlyOAuthServiceImpl")

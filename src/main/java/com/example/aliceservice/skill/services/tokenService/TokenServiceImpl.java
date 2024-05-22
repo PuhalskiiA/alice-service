@@ -5,6 +5,7 @@ import com.example.aliceservice.skill.exceptions.UserNotFoundException;
 import com.example.aliceservice.skill.model.entityes.Token;
 import com.example.aliceservice.skill.model.entityes.User;
 import com.example.aliceservice.skill.repositories.TokenRepository;
+import com.example.aliceservice.skill.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,10 @@ import java.util.UUID;
 @Service
 public class TokenServiceImpl implements TokenService {
     @Autowired
-    TokenRepository tokenRepository;
+    private TokenRepository tokenRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Token getTokenByUserID(UUID userID) {
@@ -49,14 +53,8 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public Token getTokenByPsuidAndSource(String psuid, String source) {
-        Optional<Token> tokenOpt = Optional.ofNullable(tokenRepository.getTokenByPsuidAndSource(psuid, source));
-
-        if (tokenOpt.isPresent()) {
-            return tokenOpt.get();
-        } else {
-            throw new TokenNotFoundException("Token not found");
-        }
+    public Optional<Token> getTokenByPsuidAndSource(String psuid, String source) {
+        return Optional.ofNullable(tokenRepository.getTokenByPsuidAndSource(psuid, source));
     }
 
     @Override

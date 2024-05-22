@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@CommandHandler(commands = {"доступные мне календари"}, state = SessionState.INITIAL)
+@CommandHandler(commands = {"мои календари"})
 public class OwnSourcesHandler extends Handler {
     @Autowired
     private TokenService tokenService;
@@ -22,16 +22,16 @@ public class OwnSourcesHandler extends Handler {
         YandexAliceResponse yandexAliceResponse = getDefaultResponse(yandexAliceRequest);
         List<String> userSources = tokenService.getSourcesByUserID(getUserPsuid(yandexAliceRequest));
 
-        if (userSources == null) {
+        userSources.remove("YANDEX");
 
-            yandexAliceResponse.getResponse().setText("Нет доступных календарей");
+        if (userSources.isEmpty()) {
+            yandexAliceResponse.getResponse().setText("Нет активных календарей");
             
             return yandexAliceResponse;
         }
 
-        userSources.remove("YANDEX");
-
-        yandexAliceResponse.getResponse().setText("Тебе доступны следующие календари: " + String.join(", ", userSources));
+        yandexAliceResponse.getResponse().setText("Твои календари: "
+                + String.join(", ", userSources));
 
         return yandexAliceResponse;
     }

@@ -1,15 +1,13 @@
 package com.example.aliceservice.skill.util.handlers.yadexIDHandlers;
 
-import com.example.aliceservice.skill.model.alice.SessionState;
-import com.example.aliceservice.skill.model.alice.response.YAResponseSessionState;
-import com.example.aliceservice.skill.util.handlers.CommandHandler;
-import com.example.aliceservice.skill.util.handlers.Handler;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAButton;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
 import com.example.aliceservice.skill.model.entityes.User;
 import com.example.aliceservice.skill.services.OAuthService.YandexOAuthService;
 import com.example.aliceservice.skill.services.userService.UserService;
+import com.example.aliceservice.skill.util.handlers.CommandHandler;
+import com.example.aliceservice.skill.util.handlers.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@CommandHandler(commands = {"проверить авторизацию"}, state = SessionState.INITIAL)
+@CommandHandler(commands = {"проверить авторизацию"})
 public class CheckAuthorized extends Handler {
     @Autowired
     private YandexOAuthService yandexOAuthService;
