@@ -1,25 +1,17 @@
 package com.example.aliceservice.skill.calendars.calendly;
 
-import com.example.aliceservice.skill.calendars.Calendars;
-import com.example.aliceservice.skill.calendars.EventInfo;
-import com.example.aliceservice.skill.calendars.calendly.model.availability.Collection;
-import com.example.aliceservice.skill.model.entityes.Token;
+import com.example.aliceservice.skill.calendars.Calendar;
+import com.example.aliceservice.skill.calendars.Plan;
 import com.example.aliceservice.skill.services.tokenService.TokenServiceImpl;
 import org.apache.http.client.methods.HttpPost;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 
 @Service
-public class Calendly implements Calendars {
+public class Calendly implements Calendar {
     @Autowired
     private TokenServiceImpl tokenService;
 
@@ -71,12 +63,12 @@ public class Calendly implements Calendars {
 //    }
 
     @Override
-    public void addPlan(EventInfo event) {
+    public void addPlan(Plan event) {
         HttpPost request = new HttpPost("https://api.calendly.com/one_off_event_types");
     }
 
     @Override
-    public String getEvents(EventInfo event) {
+    public String getEvents(Plan event) {
 
         return "\nСозвон по поводу дня рождения, сегодня, 12:00\n" +
                 "Обсуждение проекта, сегодня, 14:00";

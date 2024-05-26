@@ -20,5 +20,4 @@ public class YANaturalLanguageUnderstanding {
     //Array of the named entities
     List<YAEntity> entities = new ArrayList<>();
 
-
 }

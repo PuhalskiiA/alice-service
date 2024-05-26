@@ -1,7 +1,6 @@
 package com.example.aliceservice.skill.util.handlers.functional;
 
-import com.example.aliceservice.skill.calendars.Calendars;
-import com.example.aliceservice.skill.calendars.EventInfo;
+import com.example.aliceservice.skill.calendars.Calendar;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
 import com.example.aliceservice.skill.util.handlers.CommandHandler;
@@ -20,10 +19,11 @@ public class AddPlanHandler extends Handler {
     public YandexAliceResponse getResponse(YandexAliceRequest yandexAliceRequest) {
         YandexAliceResponse yandexAliceResponse = getDefaultResponse(yandexAliceRequest);
 
-        Calendars calendar = sourceStateRepository.getSource(yandexAliceRequest.getSessionState().getUserState().getState());
+        Calendar calendar = sourceStateRepository.getSource(yandexAliceRequest
+                .getSessionState().getUserState().getState());
 
         try {
-            calendar.addPlan(new EventInfo());
+            calendar.addPlan(getPlanForAdding(yandexAliceRequest));
 
             yandexAliceResponse.getResponse().setText("Хорошо, добавила");
         } catch (Exception e) {

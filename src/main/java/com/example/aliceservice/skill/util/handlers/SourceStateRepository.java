@@ -1,6 +1,6 @@
 package com.example.aliceservice.skill.util.handlers;
 
-import com.example.aliceservice.skill.calendars.Calendars;
+import com.example.aliceservice.skill.calendars.Calendar;
 import com.example.aliceservice.skill.calendars.calendly.Calendly;
 import com.example.aliceservice.skill.model.alice.SessionState;
 import lombok.AccessLevel;
@@ -12,11 +12,11 @@ import java.util.Map;
 @Component
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SourceStateRepository {
-    Map<SessionState, Calendars> hashMap = Map.ofEntries(
+    Map<SessionState, Calendar> hashMap = Map.ofEntries(
             Map.entry(SessionState.CALENDLY, new Calendly())
     );
 
-    public Calendars getSource(SessionState state) {
+    public Calendar getSource(SessionState state) {
         return hashMap.get(state);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.aliceservice.skill.util.handlers;
 
+import com.example.aliceservice.skill.calendars.Plan;
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
 import com.example.aliceservice.skill.model.alice.response.YAResponseSessionState;
 import com.example.aliceservice.skill.model.alice.response.YASkillResponse;
@@ -15,6 +16,17 @@ public abstract class Handler {
 
     protected String getUserPsuid(YandexAliceRequest yandexAliceRequest) {
         return yandexAliceRequest.getSession().getUser().getUserId();
+    }
+
+    protected Plan getPlanForAdding(YandexAliceRequest yandexAliceRequest) {
+        Plan plan = new Plan();
+
+        plan.setName(yandexAliceRequest.getRequest().getNlu().getEntities().get(0).getValue());
+        plan.setDuration();
+        plan.setDate_start();
+        plan.setDate_end();
+
+        return plan;
     }
 
     public abstract YandexAliceResponse getResponse(YandexAliceRequest yandexAliceRequest);

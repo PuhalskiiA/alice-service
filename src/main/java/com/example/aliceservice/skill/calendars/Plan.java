@@ -10,10 +10,12 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class EventInfo {
+public class Plan {
     String name;
     String description;
     String date_start;
     String date_end;
     String number;
+    String duration;
+    String location;
 }
