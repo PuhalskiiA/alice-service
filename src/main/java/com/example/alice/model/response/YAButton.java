@@ -1,7 +1,5 @@
 package com.example.alice.model.response;
 
-import com.example.skill.model.components.Button;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class YAButton extends Button {
+public class YAButton {
     //Named of button
     String title;
 

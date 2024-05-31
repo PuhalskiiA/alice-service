@@ -18,7 +18,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Alice extends ExternalService {
     YASkillResponse skillResponse = new YASkillResponse();
-
+    
     @Override
     public CustomResponse getResponse(CustomRequest request) {
         return new YandexAliceResponse(skillResponse, new YAResponseSessionState(request.getUserSessionState()), "1.0");

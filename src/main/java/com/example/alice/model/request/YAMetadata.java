@@ -11,16 +11,18 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonDeserialize(builder = YAMetadata.YAMetadataBuilder.class)
 @Builder
+//Информация об устройстве, с помощью которого пользователь разговаривает с Алисой
 public class YAMetadata {
-    @JsonProperty("locale")
+    //Language in POSIX-format
     String locale;
 
-    @JsonProperty("timezone")
+    //Time zone name
     String timezone;
 
+    //Device and app identifier
     @JsonProperty("client_id")
     String clientId;
 
-    @JsonProperty("interfaces")
+    //User apply interfaces
     YAMetaDataInterfaces interfaces;
 }
