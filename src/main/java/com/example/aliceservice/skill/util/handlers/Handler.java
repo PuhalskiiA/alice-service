@@ -21,10 +21,10 @@ public abstract class Handler {
     protected Plan getPlanForAdding(YandexAliceRequest yandexAliceRequest) {
         Plan plan = new Plan();
 
-        plan.setName(yandexAliceRequest.getRequest().getNlu().getEntities().get(0).getValue());
-        plan.setDuration();
-        plan.setDate_start();
-        plan.setDate_end();
+//        plan.setName(yandexAliceRequest.getRequest().getNlu().getEntities().get(0).getValue());
+//        plan.setDuration();
+//        plan.setDate_start();
+//        plan.setDate_end();
 
         return plan;
     }

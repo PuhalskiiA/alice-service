@@ -3,6 +3,7 @@ package com.example.aliceservice.skill.model.alice.request;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.aliceservice.skill.model.alice.request.intents.Intent;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,4 +21,5 @@ public class YANaturalLanguageUnderstanding {
     //Array of the named entities
     List<YAEntity> entities = new ArrayList<>();
 
+    Intent intent;
 }

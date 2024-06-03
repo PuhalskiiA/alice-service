@@ -21,7 +21,7 @@ public class PlanListHandler extends Handler {
         Calendar calendar = sourceStateRepository.getSource(yandexAliceRequest.getSessionState().getUserState().getState());
 
         yandexAliceResponse.getResponse().setText("На сегодня у вас запланировано:\n"
-                + calendar.getEvents(getPlan(yandexAliceRequest)));
+                + calendar.getEvents(getPlanForAdding(yandexAliceRequest)));
 
         return yandexAliceResponse;
     }

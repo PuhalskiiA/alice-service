@@ -1,6 +1,7 @@
 package com.example.aliceservice.skill.services.yandexService;
 
 import com.example.aliceservice.skill.model.alice.request.YandexAliceRequest;
+import com.example.aliceservice.skill.model.alice.request.intents.SelfIntent;
 import com.example.aliceservice.skill.model.alice.response.YASkillResponse;
 import com.example.aliceservice.skill.model.alice.response.YandexAliceResponse;
 import com.example.aliceservice.skill.util.handlers.CommandHandlersRepository;
@@ -23,6 +24,14 @@ public class YandexAliceServiceImpl implements YandexAliceService {
         if (handler == null) {
             yandexAliceResponse.getResponse().setText("Не поняла, попробуй другими словами");
             return yandexAliceResponse;
+        }
+
+        if (!yandexAliceRequest.getRequest().getCommand().isEmpty()) {
+            SelfIntent selfIntent = (SelfIntent) yandexAliceRequest.getRequest().getNlu().getIntent();
+
+            System.out.println("\n\n\n" + yandexAliceRequest + "\n\n\n");
+            System.out.println("\n\n\n" + selfIntent.getSlots().getAction().getValue() + "\n\n\n");
+            System.out.println("\n\n\n" + selfIntent.getSlots().getResource().getValue() + "\n\n\n");
         }
 
         return handler.getResponse(yandexAliceRequest);
