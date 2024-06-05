@@ -1,7 +1,7 @@
 package com.example.skill.controllers;
 
-import com.example.alice.model.request.YandexAliceRequest;
-import com.example.alice.model.response.YandexAliceResponse;
+import com.example.voiceAssistants.alice.model.request.YandexAliceRequest;
+import com.example.voiceAssistants.alice.model.response.YandexAliceResponse;
 import com.example.skill.services.talkService.TalkService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

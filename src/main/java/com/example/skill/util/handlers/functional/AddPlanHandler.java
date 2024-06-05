@@ -1,13 +1,13 @@
 package com.example.skill.util.handlers.functional;
 
-import com.example.skill.calendars.Calendars;
-import com.example.skill.calendars.EventInfo;
-import com.example.skill.util.external.CustomRequest;
-import com.example.skill.util.external.CustomResponse;
-import com.example.skill.util.external.ExternalServicesRepository;
+import com.example.skill.model.components.Plan;
+import com.example.skill.util.externalCalendar.Calendar;
+import com.example.skill.util.externalAssistant.CustomRequest;
+import com.example.skill.util.externalAssistant.CustomResponse;
+import com.example.skill.util.externalAssistant.ExternalServicesRepository;
 import com.example.skill.util.handlers.CommandHandler;
 import com.example.skill.util.handlers.Handler;
-import com.example.skill.util.handlers.SourceStateRepository;
+import com.example.skill.util.externalCalendar.CalendarStateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @CommandHandler(commands = {"добавь план"})
 public class AddPlanHandler extends Handler {
     @Autowired
-    private SourceStateRepository sourceStateRepository;
+    private CalendarStateRepository calendarStateRepository;
 
     @Autowired
     private ExternalServicesRepository externalServicesRepository;
@@ -24,10 +24,10 @@ public class AddPlanHandler extends Handler {
     public CustomResponse getResponse(CustomRequest request) {
         CustomResponse response = externalServicesRepository.getCustomResponse(request);
 
-        Calendars calendar = sourceStateRepository.getSource(request.getUserSessionState());
+        Calendar calendar = calendarStateRepository.getCalendar(request.getUserSessionState());
 
         try {
-            calendar.addPlan(new EventInfo());
+            calendar.addPlan(new Plan());
             response.setText("Хорошо, добавила");
         } catch (Exception e) {
             response.setText("Что-то пошло не так, попробуй еще раз.");

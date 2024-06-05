@@ -1,13 +1,14 @@
 package com.example.skill.util.handlers.utils;
 
 import com.example.skill.services.OAuthService.OAuthService;
-import com.example.skill.util.external.CustomRequest;
-import com.example.skill.util.external.CustomResponse;
-import com.example.skill.util.external.ExternalServicesRepository;
-import com.example.skill.calendars.Sources;
+import com.example.skill.util.Sources;
+import com.example.skill.util.externalAssistant.CustomRequest;
+import com.example.skill.util.externalAssistant.CustomResponse;
+import com.example.skill.util.externalAssistant.ExternalServicesRepository;
 import com.example.skill.util.handlers.CommandHandler;
 import com.example.skill.util.handlers.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 @CommandHandler(commands = {"доступные календари"})
 public class SourcesHandler extends Handler {
     @Autowired
+    @Qualifier("calendlyOAuthServiceImpl")
     private OAuthService oAuthService;
 
     @Autowired

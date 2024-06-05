@@ -1,13 +1,13 @@
 package com.example.skill.services.OAuthService.impl;
 
 import com.example.skill.exceptions.UserNotFoundException;
-import com.example.skill.model.OAuthModels.yandex.OAuthResponseTokenBody;
-import com.example.skill.model.OAuthModels.yandex.OAuthResponseUserBody;
+import com.example.skill.model.OAuthYandexModels.OAuthResponseTokenBody;
+import com.example.skill.model.OAuthYandexModels.OAuthResponseUserBody;
 import com.example.skill.model.entityes.User;
-import com.example.skill.services.OAuthService.YandexOAuthService;
+import com.example.skill.services.OAuthService.OAuthService;
 import com.example.skill.services.tokenService.TokenServiceImpl;
 import com.example.skill.services.userService.UserServiceImpl;
-import com.example.skill.calendars.Sources;
+import com.example.skill.util.Sources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class YandexOAuthServiceImpl implements YandexOAuthService {
+public class YandexOAuthServiceImpl implements OAuthService {
     @Autowired
     private RestTemplate restTemplate;
 

@@ -1,11 +1,11 @@
 package com.example.skill.services.OAuthService.impl;
 
 import com.example.skill.exceptions.TokenNotFoundException;
-import com.example.skill.model.OAuthModels.calendly.OAuthResponseBody;
+import com.example.calendars.calendly.model.oauth.OAuthResponseBody;
 import com.example.skill.services.OAuthService.OAuthService;
 import com.example.skill.services.tokenService.TokenServiceImpl;
 import com.example.skill.services.userService.UserServiceImpl;
-import com.example.skill.calendars.Sources;
+import com.example.skill.util.Sources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -69,7 +69,7 @@ public class CalendlyOAuthServiceImpl implements OAuthService {
     }
 
     @Override
-    public String getCodeURL(String state) {
+    public String getCodeURL(String userID) {
         String url = "https://auth.calendly.com/oauth/authorize";
         String responseType = "code";
 
@@ -77,13 +77,8 @@ public class CalendlyOAuthServiceImpl implements OAuthService {
                 "?client_id=" + clientId +
                 "&response_type=" + responseType +
                 "&redirect_uri=" + redirectURI +
-                "&state=" + state;
+                "&state=" + userID;
 
         return requestUrl;
-    }
-
-    @Override
-    public ResponseEntity<String> refreshToken() {
-        return null;
     }
 }

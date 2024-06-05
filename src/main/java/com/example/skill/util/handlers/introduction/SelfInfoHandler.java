@@ -1,12 +1,11 @@
 package com.example.skill.util.handlers.introduction;
 
-import com.example.skill.util.external.CustomRequest;
-import com.example.skill.util.external.CustomResponse;
-import com.example.skill.util.external.ExternalServicesRepository;
-import com.example.skill.util.handlers.Handler;
 import com.example.skill.services.OAuthService.OAuthService;
-import com.example.skill.services.OAuthService.YandexOAuthService;
+import com.example.skill.util.externalAssistant.CustomRequest;
+import com.example.skill.util.externalAssistant.CustomResponse;
+import com.example.skill.util.externalAssistant.ExternalServicesRepository;
 import com.example.skill.util.handlers.CommandHandler;
+import com.example.skill.util.handlers.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,8 @@ public class SelfInfoHandler extends Handler {
     private OAuthService oAuthService;
 
     @Autowired
-    private YandexOAuthService yandexOAuthService;
+    @Qualifier("yandexOAuthServiceImpl")
+    private OAuthService yandexOAuthService;
 
     @Autowired
     private ExternalServicesRepository externalServicesRepository;
