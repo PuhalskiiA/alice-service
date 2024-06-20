@@ -5,18 +5,19 @@ import com.example.skill.model.components.URLButton;
 import com.example.skill.services.OAuthService.OAuthService;
 import com.example.skill.util.SessionState;
 import com.example.skill.util.Sources;
-import com.example.skill.util.externalAssistant.ExternalService;
-import com.example.skill.util.externalCalendar.Calendar;
+import com.example.skill.util.external_assistant.ExternalService;
+import com.example.skill.util.external_calendar.Calendar;
 import com.example.skill.model.entityes.Token;
 import com.example.skill.services.tokenService.TokenService;
-import com.example.skill.util.externalAssistant.CustomRequest;
-import com.example.skill.util.externalAssistant.CustomResponse;
-import com.example.skill.util.externalAssistant.ExternalServicesRepository;
+import com.example.skill.util.external_assistant.CustomRequest;
+import com.example.skill.util.external_assistant.CustomResponse;
+import com.example.skill.util.external_assistant.ExternalServicesRepository;
 import com.example.skill.util.handlers.CommandHandler;
 import com.example.skill.util.handlers.Handler;
-import com.example.skill.util.externalCalendar.CalendarStateRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.example.skill.util.external_calendar.CalendarStateRepository;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,24 +25,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @CommandHandler(commands = {"запусти calendly"})
 public class SelectCalendarHandler extends Handler {
-    @Autowired
-    @Qualifier("yandexOAuthServiceImpl")
-    private OAuthService yandexOAuthServiceImpl;
-
-    @Autowired
-    @Qualifier("calendlyOAuthServiceImpl")
-    private OAuthService calendlyOAuthServiceImpl;
-
-    @Autowired
-    private TokenService tokenService;
-
-    @Autowired
-    private ExternalServicesRepository externalServicesRepository;
-
-    @Autowired
-    private CalendarStateRepository calendarStateRepository;
+    OAuthService yandexOAuthServiceImpl;
+    OAuthService calendlyOAuthServiceImpl;
+    TokenService tokenService;
+    ExternalServicesRepository externalServicesRepository;
+    CalendarStateRepository calendarStateRepository;
 
     @Override
     public CustomResponse getResponse(CustomRequest request) {

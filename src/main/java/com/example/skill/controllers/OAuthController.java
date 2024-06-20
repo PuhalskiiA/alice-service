@@ -12,15 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @RequestMapping(value = "/oauth")
 public class OAuthController {
-    @Autowired
-    private YandexOAuthServiceImpl yandexOAuthService;
-
-    @Autowired
-    private CalendlyOAuthServiceImpl calendlyOAuthService;
+    YandexOAuthServiceImpl yandexOAuthService;
+    CalendlyOAuthServiceImpl calendlyOAuthService;
 
     @GetMapping(value = "/yandex_id")
     public ResponseEntity<String> authenticateYAID(@RequestParam("code") String code,

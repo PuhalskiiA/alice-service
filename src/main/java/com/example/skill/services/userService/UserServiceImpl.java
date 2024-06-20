@@ -3,6 +3,9 @@ package com.example.skill.services.userService;
 import com.example.skill.exceptions.UserNotFoundException;
 import com.example.skill.model.entityes.User;
 import com.example.skill.repositories.UserRepository;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +13,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class UserServiceImpl implements UserService {
-    @Autowired
     UserRepository userRepository;
 
     @Override

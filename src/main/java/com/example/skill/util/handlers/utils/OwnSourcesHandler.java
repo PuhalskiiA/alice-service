@@ -1,24 +1,25 @@
 package com.example.skill.util.handlers.utils;
 
-import com.example.skill.util.externalAssistant.CustomRequest;
-import com.example.skill.util.externalAssistant.CustomResponse;
-import com.example.skill.util.externalAssistant.ExternalServicesRepository;
+import com.example.skill.util.external_assistant.CustomRequest;
+import com.example.skill.util.external_assistant.CustomResponse;
+import com.example.skill.util.external_assistant.ExternalServicesRepository;
 import com.example.skill.util.handlers.Handler;
 import com.example.skill.services.tokenService.TokenService;
 import com.example.skill.util.handlers.CommandHandler;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @CommandHandler(commands = {"мои календари"})
 public class OwnSourcesHandler extends Handler {
-    @Autowired
-    private ExternalServicesRepository externalServicesRepository;
-
-    @Autowired
-    private TokenService tokenService;
+    ExternalServicesRepository externalServicesRepository;
+    TokenService tokenService;
 
     @Override
     public CustomResponse getResponse(CustomRequest request) {

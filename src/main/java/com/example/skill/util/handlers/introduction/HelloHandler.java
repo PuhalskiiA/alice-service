@@ -5,14 +5,15 @@ import com.example.skill.model.components.URLButton;
 import com.example.skill.model.entityes.User;
 import com.example.skill.services.OAuthService.OAuthService;
 import com.example.skill.services.userService.UserService;
-import com.example.skill.util.externalAssistant.CustomRequest;
-import com.example.skill.util.externalAssistant.CustomResponse;
-import com.example.skill.util.externalAssistant.ExternalService;
-import com.example.skill.util.externalAssistant.ExternalServicesRepository;
+import com.example.skill.util.external_assistant.CustomRequest;
+import com.example.skill.util.external_assistant.CustomResponse;
+import com.example.skill.util.external_assistant.ExternalService;
+import com.example.skill.util.external_assistant.ExternalServicesRepository;
 import com.example.skill.util.handlers.CommandHandler;
 import com.example.skill.util.handlers.Handler;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,21 +21,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @CommandHandler(commands = {"", "на главную", "главная", "привет"})
 public class HelloHandler extends Handler {
-    @Autowired
-    @Qualifier("calendlyOAuthServiceImpl")
-    private OAuthService calendlyOAuthServiceImpl;
-
-    @Autowired
-    @Qualifier("yandexOAuthServiceImpl")
-    private OAuthService yandexOAuthService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private ExternalServicesRepository externalServicesRepository;
+    OAuthService calendlyOAuthServiceImpl;
+    OAuthService yandexOAuthServiceImpl;
+    UserService userService;
+    ExternalServicesRepository externalServicesRepository;
 
     @Override
     public CustomResponse getResponse(CustomRequest request) {
@@ -61,7 +55,7 @@ public class HelloHandler extends Handler {
                     "чтобы немного узнать обо мне.");
 
             authButton.setButton("Авторизироваться",
-                    yandexOAuthService.getCodeURL(request.getUserPsuid()), true);
+                    yandexOAuthServiceImpl.getCodeURL(request.getUserPsuid()), true);
 
             buttons.add(authButton);
         }

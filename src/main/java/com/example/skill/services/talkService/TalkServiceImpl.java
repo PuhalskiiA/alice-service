@@ -1,20 +1,21 @@
 package com.example.skill.services.talkService;
 
-import com.example.skill.util.externalAssistant.CustomRequest;
-import com.example.skill.util.externalAssistant.CustomResponse;
-import com.example.skill.util.externalAssistant.ExternalServicesRepository;
+import com.example.skill.util.external_assistant.CustomRequest;
+import com.example.skill.util.external_assistant.CustomResponse;
+import com.example.skill.util.external_assistant.ExternalServicesRepository;
 import com.example.skill.util.handlers.CommandHandlersRepository;
 import com.example.skill.util.handlers.Handler;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class TalkServiceImpl implements TalkService {
-    @Autowired
-    private CommandHandlersRepository commandHandlersRepository;
-
-    @Autowired
-    private ExternalServicesRepository externalServicesRepository;
+    CommandHandlersRepository commandHandlersRepository;
+    ExternalServicesRepository externalServicesRepository;
 
     @Override
     public CustomResponse talk(CustomRequest request) {

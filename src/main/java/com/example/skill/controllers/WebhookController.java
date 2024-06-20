@@ -1,7 +1,7 @@
 package com.example.skill.controllers;
 
-import com.example.voiceAssistants.alice.model.request.YandexAliceRequest;
-import com.example.voiceAssistants.alice.model.response.YandexAliceResponse;
+import com.example.voice_assistants.alice.model.request.YandexAliceRequest;
+import com.example.voice_assistants.alice.model.response.YandexAliceResponse;
 import com.example.skill.services.talkService.TalkService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class WebhookController {
-    @Autowired
     TalkService talkService;
 
     @PostMapping(value = "/webhook")

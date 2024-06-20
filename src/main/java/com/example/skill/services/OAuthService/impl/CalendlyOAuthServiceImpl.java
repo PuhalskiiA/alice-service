@@ -6,6 +6,9 @@ import com.example.skill.services.OAuthService.OAuthService;
 import com.example.skill.services.tokenService.TokenServiceImpl;
 import com.example.skill.services.userService.UserServiceImpl;
 import com.example.skill.util.Sources;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -17,19 +20,16 @@ import java.util.Base64;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class CalendlyOAuthServiceImpl implements OAuthService {
-    @Autowired
-    private RestTemplate restTemplate;
+    RestTemplate restTemplate;
+    TokenServiceImpl tokenService;
+    UserServiceImpl userService;
 
-    @Autowired
-    private TokenServiceImpl tokenService;
-
-    @Autowired
-    private UserServiceImpl userService;
-
-    private final String clientId = "kTYiuXubdTDCaC7QkJsGJjFcLS7NGQ4yInlnoI6TAdI";
-    private final String clientSecret = "Qu8Q4AjG0kr4tbhucsXF8BwdhvhGUBYHgKuNlQ7TXio";
-    private final String redirectURI = "https://dateplan.ru/oauth/calendly";
+    String clientId = "kTYiuXubdTDCaC7QkJsGJjFcLS7NGQ4yInlnoI6TAdI";
+    String clientSecret = "Qu8Q4AjG0kr4tbhucsXF8BwdhvhGUBYHgKuNlQ7TXio";
+    String redirectURI = "https://dateplan.ru/oauth/calendly";
 
     @Override
     public ResponseEntity<String> authenticate(String code, String state) {

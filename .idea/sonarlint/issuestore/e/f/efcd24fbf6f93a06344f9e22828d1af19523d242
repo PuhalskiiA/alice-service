@@ -1,0 +1,14 @@
+
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(™ğ‡®ıÿÿÿÿJ$e1315c25-6c4d-4aa7-9f55-4b919b45290e
+
+java:S1488L"bImmediately return this expression instead of assigning it to the temporary variable "requestUrl".(ÊÎüaJ$850da48c-3269-4c68-a0f3-8fc2ef827db0
+‡
+java:S2259="FA "NullPointerException" could be thrown; "getBody()" can return null.(™Ğì×üÿÿÿÿJ$3fd48b06-0ea8-4f0c-9bb6-e3bae74585a7
+‚
+java:S2259@"FA "NullPointerException" could be thrown; "getBody()" can return null.(¸¨‰™J$a4fecdc7-943a-4905-984b-c57cdec5d75e
+‡
+java:S2259?"FA "NullPointerException" could be thrown; "getBody()" can return null.(½«€¤úÿÿÿÿJ$cad23faf-57ab-4ebd-9593-a048474b87af
+‡
+java:S2259<"FA "NullPointerException" could be thrown; "getBody()" can return null.(Öï‡´ùÿÿÿÿJ$cba21000-907a-4835-b1b0-04c9152d8027
+›
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8Šˆ‹°ƒ2J$f875f2a5-4b9a-4f14-83f2-9dfa06142328

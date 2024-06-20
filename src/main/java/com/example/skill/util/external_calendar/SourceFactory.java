@@ -1,0 +1,11 @@
+package com.example.skill.util.external_calendar;
+
+import com.example.skill.util.Sources;
+
+public class SourceFactory {
+    public static Sources getSource(String command) {
+        if (command.contains("calendly")) return Sources.CALENDLY;
+
+        return null;
+    }
+}

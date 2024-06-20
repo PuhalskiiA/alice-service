@@ -8,6 +8,9 @@ import com.example.skill.services.OAuthService.OAuthService;
 import com.example.skill.services.tokenService.TokenServiceImpl;
 import com.example.skill.services.userService.UserServiceImpl;
 import com.example.skill.util.Sources;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -20,18 +23,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class YandexOAuthServiceImpl implements OAuthService {
-    @Autowired
-    private RestTemplate restTemplate;
+    RestTemplate restTemplate;
+    UserServiceImpl userService;
+    TokenServiceImpl tokenService;
 
-    @Autowired
-    private UserServiceImpl userService;
-
-    @Autowired
-    private TokenServiceImpl tokenService;
-
-    private final static String clientId = "4d064ceeaa4e4c349f71c95f769f74ee";
-    private final static String clientSecret = "1962fe8464a4404e9259ff1ab0958b59";
+    static String clientId = "4d064ceeaa4e4c349f71c95f769f74ee";
+    static String clientSecret = "1962fe8464a4404e9259ff1ab0958b59";
 
     @Override
     public ResponseEntity<String> authenticate(String code, String state) {
