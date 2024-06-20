@@ -1,7 +1,7 @@
 package com.example.voice_assistants.alice.model.request;
 
-import com.example.skill.util.SessionState;
-import com.example.skill.util.external_assistant.CustomRequest;
+import com.example.skill.util.external_utils.SessionState;
+import com.example.skill.util.external_utils.external_assistant.CustomRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

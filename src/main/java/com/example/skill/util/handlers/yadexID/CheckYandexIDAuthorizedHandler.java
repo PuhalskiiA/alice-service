@@ -2,9 +2,9 @@ package com.example.skill.util.handlers.yadexID;
 
 import com.example.skill.model.entityes.User;
 import com.example.skill.services.userService.UserService;
-import com.example.skill.util.external_assistant.CustomRequest;
-import com.example.skill.util.external_assistant.CustomResponse;
-import com.example.skill.util.external_assistant.ExternalServicesRepository;
+import com.example.skill.util.external_utils.external_assistant.CustomRequest;
+import com.example.skill.util.external_utils.external_assistant.CustomResponse;
+import com.example.skill.util.external_utils.external_assistant.ExternalServicesRepository;
 import com.example.skill.util.handlers.CommandHandler;
 import com.example.skill.util.handlers.Handler;
 import lombok.AccessLevel;

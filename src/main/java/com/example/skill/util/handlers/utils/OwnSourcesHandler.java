@@ -1,8 +1,8 @@
 package com.example.skill.util.handlers.utils;
 
-import com.example.skill.util.external_assistant.CustomRequest;
-import com.example.skill.util.external_assistant.CustomResponse;
-import com.example.skill.util.external_assistant.ExternalServicesRepository;
+import com.example.skill.util.external_utils.external_assistant.CustomRequest;
+import com.example.skill.util.external_utils.external_assistant.CustomResponse;
+import com.example.skill.util.external_utils.external_assistant.ExternalServicesRepository;
 import com.example.skill.util.handlers.Handler;
 import com.example.skill.services.tokenService.TokenService;
 import com.example.skill.util.handlers.CommandHandler;

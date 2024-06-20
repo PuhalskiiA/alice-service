@@ -1,13 +1,13 @@
 package com.example.skill.util.handlers.functional;
 
 import com.example.skill.model.components.Plan;
-import com.example.skill.util.external_calendar.Calendar;
-import com.example.skill.util.external_assistant.CustomRequest;
-import com.example.skill.util.external_assistant.CustomResponse;
-import com.example.skill.util.external_assistant.ExternalServicesRepository;
+import com.example.skill.util.external_utils.external_calendar.Calendar;
+import com.example.skill.util.external_utils.external_assistant.CustomRequest;
+import com.example.skill.util.external_utils.external_assistant.CustomResponse;
+import com.example.skill.util.external_utils.external_assistant.ExternalServicesRepository;
 import com.example.skill.util.handlers.Handler;
 import com.example.skill.util.handlers.CommandHandler;
-import com.example.skill.util.external_calendar.CalendarStateRepository;
+import com.example.skill.util.external_utils.external_calendar.CalendarStateRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

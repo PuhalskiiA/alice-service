@@ -2,9 +2,9 @@ package com.example.calendars.calendly;
 
 import com.example.skill.model.components.Plan;
 import com.example.skill.services.tokenService.TokenService;
-import com.example.skill.util.SessionState;
-import com.example.skill.util.external_calendar.Calendar;
-import com.example.skill.util.Sources;
+import com.example.skill.util.external_utils.SessionState;
+import com.example.skill.util.external_utils.external_calendar.Calendar;
+import com.example.skill.util.external_utils.Sources;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

@@ -2,10 +2,10 @@ package com.example.skill.util.handlers.auth;
 
 import com.example.skill.model.entityes.User;
 import com.example.skill.services.userService.UserService;
-import com.example.skill.util.external_assistant.CustomRequest;
-import com.example.skill.util.external_assistant.CustomResponse;
-import com.example.skill.util.external_assistant.ExternalServicesRepository;
-import com.example.skill.util.external_calendar.SourceFactory;
+import com.example.skill.util.external_utils.external_assistant.CustomRequest;
+import com.example.skill.util.external_utils.external_assistant.CustomResponse;
+import com.example.skill.util.external_utils.external_assistant.ExternalServicesRepository;
+import com.example.skill.util.external_utils.external_calendar.SourceFactory;
 import com.example.skill.util.handlers.Handler;
 import com.example.skill.util.handlers.CommandHandler;
 import lombok.AccessLevel;

@@ -1,8 +1,8 @@
 package com.example.skill.services.talkService;
 
-import com.example.skill.util.external_assistant.CustomRequest;
-import com.example.skill.util.external_assistant.CustomResponse;
-import com.example.skill.util.external_assistant.ExternalServicesRepository;
+import com.example.skill.util.external_utils.external_assistant.CustomRequest;
+import com.example.skill.util.external_utils.external_assistant.CustomResponse;
+import com.example.skill.util.external_utils.external_assistant.ExternalServicesRepository;
 import com.example.skill.util.handlers.CommandHandlersRepository;
 import com.example.skill.util.handlers.Handler;
 import lombok.AccessLevel;

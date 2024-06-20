@@ -1,6 +1,6 @@
 package com.example.voice_assistants.alice.model.response;
 
-import com.example.skill.util.SessionState;
+import com.example.skill.util.external_utils.SessionState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
